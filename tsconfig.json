@@ -25,7 +25,8 @@
     "src/test.ts",
     "src/test/**",
     "src/components/figma-ui/**",
-    "src/extension-refactored.ts"
+    "src/extension-refactored.ts",
+    "src/core/AuthService.test.ts"
   ]
 }
 

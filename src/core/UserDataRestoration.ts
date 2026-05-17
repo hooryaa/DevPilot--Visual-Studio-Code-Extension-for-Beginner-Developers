@@ -6,7 +6,7 @@
 
 import * as vscode from 'vscode';
 import { getLogger } from './logger';
-import { getAuthService } from './AuthService';
+import { getAuthService } from './authService';
 
 const logger = getLogger('UserDataRestoration');
 

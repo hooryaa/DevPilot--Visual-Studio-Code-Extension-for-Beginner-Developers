@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { TODOWorkflowManager } from './todoWorkflow';
-import { getAuthService } from '../core/AuthService';
+import { getAuthService } from '../core/authService';
 import { getLogger } from '../core/logger';
 import { subscribeWebviewToAuthState } from '../core/webview/authIntegration';
 import { getStateBroadcaster, getStateManager } from '../core/stateManager';

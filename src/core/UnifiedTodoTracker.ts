@@ -112,6 +112,12 @@ export class UnifiedTodoTracker {
     // Update diagnostics
     this.updateDiagnostics(document.uri, todos);
 
+    // Update decorations for active editors
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor && activeEditor.document.uri.toString() === document.uri.toString()) {
+      this.updateDecorations(activeEditor);
+    }
+
     // Emit change event
     this.onTodosChanged.fire(Array.from(this.todos.values()));
 

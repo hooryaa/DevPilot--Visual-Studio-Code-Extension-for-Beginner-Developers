@@ -13,7 +13,7 @@ import { checkUserQuota, recordUserAction, getFeatureStatus } from "../core/webv
 import { getChatService } from "../core/services/ChatService";
 import { subscribeWebviewToAuthState } from "../core/webview/authIntegration";
 import { getStateManager } from "../core/stateManager";
-import { getAuthService } from "../core/AuthService";
+import { getAuthService } from "../core/authService";
 import { getAIResponse, buildPrompt } from "../utils/aiAPI";
 
 const logger = getLogger("ChatSidebar");

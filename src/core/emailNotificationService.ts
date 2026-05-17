@@ -14,7 +14,7 @@
 
 import * as vscode from "vscode";
 import { getLogger } from "./logger";
-import { getAuthService, UserProfile } from "./AuthService";
+import { getAuthService, UserProfile } from "./authService";
 import { getStateManager } from "./stateManager";
 
 const logger = getLogger("EmailNotificationService");

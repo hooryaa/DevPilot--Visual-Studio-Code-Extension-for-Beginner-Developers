@@ -66,7 +66,7 @@ import { registerLearningPanel } from "../providers/learningPanel";
 import { registerCommitMessagePanel } from "../providers/commitMessagePanel";
 
 // Services
-import { getAuthService, AuthService } from "./AuthService";
+import { getAuthService, AuthService } from "./authService";
 import { getStateService, initializeStateService } from "./services/StateService";
 import { initializeAuthStateService } from "./authStateSync";
 import { initializeGoogleSyncService, getGoogleSyncService } from "./googleSyncService";

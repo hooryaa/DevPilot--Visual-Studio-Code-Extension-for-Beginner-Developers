@@ -13,7 +13,7 @@
 
 import * as vscode from "vscode";
 import { getLogger } from "../core/logger";
-import { getAuthService, UserProfile } from "./AuthService";
+import { getAuthService, UserProfile } from "./authService";
 import { getStateManager } from "../core/stateManager";
 
 const logger = getLogger("AuthStateSync");
