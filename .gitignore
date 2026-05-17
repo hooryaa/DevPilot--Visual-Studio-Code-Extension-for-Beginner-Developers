@@ -1,0 +1,10 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+
+# OAuth Credentials (NEVER COMMIT)
+client_secret_*.json
+.env
+.env.local

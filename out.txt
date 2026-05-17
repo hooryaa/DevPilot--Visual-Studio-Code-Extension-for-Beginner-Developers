@@ -1,0 +1,3 @@
+src\components\figma-ui\dashboard\EditorOverlay.tsx:74:const openFile = () => {
+src\components\figma-ui\dashboard\EditorOverlay.tsx:77:postToExtension("openFile", {
+src\components\figma-ui\dashboard\EditorOverlay.tsx:132:            <Button onClick={openFile} className="text-xs h-8">
