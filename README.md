@@ -32,6 +32,8 @@ It combines offline AST‑powered analysis, educational tooling, productivity fe
 
 ## 🎥 Quick Demo
 
+![DevPilot Demo](media/DevPilot.gif)
+
 Watch DevPilot in action: [Project Demo (YouTube)](https://youtu.be/ocs4PCVTKS0)
 
 ---
