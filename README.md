@@ -122,16 +122,54 @@ Install the latest VSIX via `Extensions: Install from VSIX...` in Visual Studio 
 
 ```mermaid
 flowchart TD
-  EXT[DevPilot Extension]
-  AST[AST Analysis]
-  DEVAI[DevAI Assistant]
-  AUTH[Authentication]
-  WEB[React Dashboard]
+  subgraph VSCode["VS Code Host"]
+    EXT[DevPilot Extension<br/>(activate)]
+    subgraph CORE["Core Services"]
+      SM[StateManager / StateService]
+      AST[AST Analyzer (Babel)]
+      UCR[UnifiedCommandRouter]
+      AC[Auth Coordinators<br/>GitHub & Google]
+      TODO[TODO & Issue Trackers]
+      PT[Progress / Achievements]
+      US[UnifiedSuggestion Engine]
+    end
+    subgraph UI["Providers & UI"]
+      HOV[Hover & Inline Providers]
+      REF[Refactor / Code Actions]
+      WEB[Webviews (React) — Dashboard / Chat / Learning]
+      UIH[CodeLens / Decorations / Diagnostics]
+    end
+  end
 
-  EXT --> AST
-  EXT --> DEVAI
-  EXT --> AUTH
-  EXT --> WEB
+  %% Internal connections
+  EXT -->|initializes| SM
+  EXT -->|registers| UCR
+  EXT -->|attaches| WEB
+  UCR --> HOV
+  UCR --> REF
+  UCR --> UIH
+  AST --> HOV
+  AST --> REF
+  US --> HOV
+  US --> REF
+  SM <--> WEB
+  SM --> TODO
+  SM --> PT
+  AC --> SM
+  EXT --> AC
+
+  %% External systems
+  OAuthWorker[Cloudflare OAuth Worker<br/>(loopback / callback)]
+  GitHub[GitHub API / OAuth]
+  OpenAI[OpenAI API (optional)]
+  VSE[VS Code secrets / globalState (storage)]
+
+  %% External connections
+  AC -- "loopback / token exchange" --> OAuthWorker
+  AC -- "native auth / API" --> GitHub
+  SM --- VSE
+  US -- "optional LLM calls" --> OpenAI
+  WEB -- "messages / state" --> SM
 ```
 
 ---
