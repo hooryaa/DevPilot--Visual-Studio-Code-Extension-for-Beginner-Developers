@@ -199,7 +199,7 @@ The source code in this repository is licensed under the MIT License.
 
 The DevPilot name, logo, branding, screenshots, documentation assets, and visual identity are not covered by the MIT License and may not be used without prior written permission.
 
-See LICENSE and TRADEMARK.md for details.
+See [LICENSE](LICENSE) and [TRADEMARK.md](TRADEMARK.md) for details.
 
 ---
 # ⭐ Support DevPilot
