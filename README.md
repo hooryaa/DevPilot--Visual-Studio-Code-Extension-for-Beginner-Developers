@@ -38,15 +38,15 @@ Watch DevPilot in action: [Project Demo (YouTube)](https://youtu.be/ocs4PCVTKS0)
 
 ---
 
-| Dashboard | DevAI |
+| Dashboard (Github + Google Auth) | DevAI |
 |-----------|-------|
 | ![](media/screenshots/Dashboard.png) | ![](media/screenshots/DevAI.png) |
 
-| Hover | Git |
+| Hover Definitions & Suggestions | Git Commit Message Generation |
 |--------|-----|
 | ![](media/screenshots/Hover.png) | ![](media/screenshots/Git.png) |
 
-| Learning | Translation |
+| Learning Resources | Translation & Tips |
 |----------|-------------|
 | ![](media/screenshots/LearningResources.png) | ![](media/screenshots/Translation.png) |
 
