@@ -13,5 +13,6 @@
 
   // Force default integrated terminal to Command Prompt (instead of PowerShell)
   "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "devpilot.freegptUrl": "http://127.0.0.1:5500",
   "devpilot.enableTelemetry": false
 }

@@ -15,6 +15,7 @@ import { initializeWorkspaceContext } from "./workspaceContext";
 import { NullAIProvider, setAIProvider, getAIProvider } from "./aiProvider";
 import { getAIResponse } from "../utils/aiAPI";
 import { OpenAIProvider } from "./openaiProvider";
+import FreeGPTProvider from "./freegptProvider";
 import { registerSuggestFixCommand } from "./suggestFixCommand";
 import { initializeTODOPersistence } from "./todoPersistence";
 import { initializeStagedAnalyzer } from "./stagedAnalysis";
@@ -1424,6 +1425,40 @@ export async function activate(context: vscode.ExtensionContext) {
     } catch (error) {
       logger.warn("Failed to initialize OpenAI", { error: String(error) });
     }
+  }
+
+  // If no AI provider is available yet, try configured FreeGPT URL or probe local default
+  try {
+    const current = getAIProvider();
+    if (!current.isAvailable) {
+      const cfg = vscode.workspace.getConfiguration("devpilot");
+      const freegptUrl = cfg.get<string>("freegptUrl") || "";
+
+      if (freegptUrl) {
+        try {
+          const freeProv = await FreeGPTProvider.create(freegptUrl);
+          if (freeProv.isReady()) {
+            setAIProvider(freeProv);
+            logger.info("FreeGPT provider initialized from configuration", { freegptUrl });
+          }
+        } catch (err) {
+          logger.warn("Failed to initialize FreeGPT from config", { error: String(err), freegptUrl });
+        }
+      } else {
+        // Try default local server probe
+        try {
+          const autoProv = await FreeGPTProvider.create();
+          if (autoProv.isReady()) {
+            setAIProvider(autoProv);
+            logger.info("FreeGPT provider auto-detected at default URL");
+          }
+        } catch (err) {
+          logger.debug("FreeGPT auto-detection failed", { error: String(err) });
+        }
+      }
+    }
+  } catch (err) {
+    logger.debug("FreeGPT detection encountered an error", { error: String(err) });
   }
 
   /* ========== Register Native Providers ==========*/

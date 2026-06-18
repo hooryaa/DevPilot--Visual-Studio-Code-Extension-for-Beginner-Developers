@@ -409,6 +409,12 @@
           "default": "",
           "description": "Google OAuth Client Secret (for Loopback authentication mode). Keep this secret and never share it."
         }
+        ,
+        "devpilot.freegptUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Optional: URL of a self-hosted Free-GPT4 web API (e.g. http://127.0.0.1:5500). If set and reachable, DevPilot will use it as a local AI provider."
+        }
       }
     }
   },
