@@ -1,5 +1,8 @@
 module.exports = {
-  preset: 'ts-jest',
+  // Use ts-jest as a transformer directly to avoid preset resolution issues
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest/dist/index.js', { tsconfig: 'tsconfig.json' }]
+  },
   testEnvironment: 'node',
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],

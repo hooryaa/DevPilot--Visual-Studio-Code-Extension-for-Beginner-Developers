@@ -2,7 +2,7 @@
   "author": "Hooria Amir",
   "name": "devpilot",
   "displayName": "DevPilot",
-  "description": "An AI-Powered VS Code Extension for Beginners",
+  "description": "AI‑Powered Development Assistant for Visual Studio Code — offline-first, AST-powered analysis, learning tools, and optional AI integrations.",
   "version": "0.1.3",
   "license": "MIT",
   "main": "./out/extension.js",
@@ -48,6 +48,7 @@
     "onCommand:devpilot.signInGoogle",
     "onCommand:devpilot.signOut",
     "onCommand:devpilot.checkAuthStatus",
+    "onCommand:devpilot.showWelcome",
     "onCommand:devpilot.configureGoogleOAuth",
     "onCommand:devpilot.suggestFix",
     "onCommand:devpilot.translateCode",
@@ -66,6 +67,11 @@
     },
     "views": {
       "devpilot": [
+        {
+          "id": "devpilot.welcomeSidebar",
+          "name": "Welcome",
+          "type": "webview"
+        },
         {
           "id": "devpilot.dashboard",
           "name": "Dashboard",
@@ -88,6 +94,27 @@
         }
       ]
     },
+    "walkthroughs": [
+      {
+        "id": "getting-started",
+        "title": "DevPilot — Getting Started",
+        "description": "A short introduction to DevPilot features and where to begin.",
+        "steps": [
+          {
+            "title": "Welcome to DevPilot",
+            "markdown": "README.md"
+          },
+          {
+            "title": "Quick Start",
+            "markdown": "QUICK_START.md"
+          },
+          {
+            "title": "Using the Dashboard and Chat",
+            "markdown": "docs/DEVPILOT_HELP.md"
+          }
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "devpilot.suggestFix",
@@ -157,6 +184,11 @@
       {
         "command": "devpilot.signOut",
         "title": "DevPilot: Sign Out",
+        "category": "DevPilot"
+      },
+      {
+        "command": "devpilot.showGettingStarted",
+        "title": "DevPilot: Show Getting Started",
         "category": "DevPilot"
       },
       {
@@ -258,6 +290,12 @@
       {
         "command": "devpilot.trackLearningActivity",
         "title": "DevPilot: Track Learning Activity",
+        "category": "DevPilot"
+      }
+      ,
+      {
+        "command": "devpilot.showWelcome",
+        "title": "DevPilot: Show Welcome",
         "category": "DevPilot"
       }
     ],
@@ -409,8 +447,7 @@
           "type": "string",
           "default": "",
           "description": "Google OAuth Client Secret (for Loopback authentication mode). Keep this secret and never share it."
-        }
-        ,
+        },
         "devpilot.freegptUrl": {
           "type": "string",
           "default": "",
@@ -509,7 +546,7 @@
     "react-resizable-panels": "^3.0.6",
     "react-syntax-highlighter": "^16.1.1",
     "recharts": "^3.5.1",
-    "simple-git": "^3.28.0",
+    "simple-git": "^3.36.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2"

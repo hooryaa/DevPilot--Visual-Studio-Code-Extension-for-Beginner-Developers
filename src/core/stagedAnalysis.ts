@@ -289,7 +289,7 @@ export class StagedChangeAnalyzer {
       return output
         .trim()
         .split("\n")
-        .filter((line) => line.trim() !== "");
+        .filter((line: string) => line.trim() !== "");
     } catch (error) {
       logger.error("[DevPilot] Failed to get staged files", {
         error: String(error),

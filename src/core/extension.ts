@@ -8,6 +8,7 @@
 
 import * as vscode from "vscode";
 import * as path from "path";
+import * as fs from 'fs';
 import { getLogger, initializeLogging } from "./logger";
 import { registerGlobalErrorHandler } from "./errorHandler";
 import { initializeStateManager, getStateManager, getStateBroadcaster } from "./stateManager";
@@ -390,6 +391,109 @@ export async function activate(context: vscode.ExtensionContext) {
       logger.warn("Failed to initialize dashboard state", { error: String(initError) });
     }
 
+    // Show onboarding walkthrough on first install, reinstall, or after an update
+    try {
+      const extId = 'devpilotorg.devpilot';
+      const ext = vscode.extensions.getExtension(extId);
+      const currentVersion = ext?.packageJSON?.version ?? '0.0.0';
+      const shownFor = await context.globalState.get<string>('devpilot.tutorialShownForVersion');
+
+      // Try to detect a fresh install/reinstall by checking the extension folder mtime
+      let installedMtime = 0;
+      try {
+        if (ext && ext.extensionPath) {
+          const stats = await fs.promises.stat(ext.extensionPath);
+          installedMtime = Math.round(stats.mtimeMs);
+        }
+      } catch (statErr) {
+        // ignore stat errors
+      }
+
+      // Also use an on-disk marker inside the extension folder. When the extension is reinstalled,
+      // the extension folder is replaced and the marker will be missing which reliably indicates reinstall.
+      let markerMissingOrStale = false;
+      try {
+        if (ext && ext.extensionPath) {
+          const markerPath = path.join(ext.extensionPath, '.devpilot_installed');
+          try {
+            const marker = await fs.promises.readFile(markerPath, 'utf8');
+            if (marker.trim() !== currentVersion) {
+              markerMissingOrStale = true;
+            }
+          } catch (markerErr) {
+            // marker missing -> treat as fresh install/reinstall
+            markerMissingOrStale = true;
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
+
+      // Additionally detect reinstall by comparing extension folder path
+      const storedExtensionPath = (await context.globalState.get<string>('devpilot.extensionPath')) || '';
+      const currentExtensionPath = ext?.extensionPath || '';
+      const storedInstallMtime = (await context.globalState.get<number>('devpilot.extensionInstallMtime')) || 0;
+
+      const pathChanged = storedExtensionPath && currentExtensionPath && storedExtensionPath !== currentExtensionPath;
+      if (pathChanged) {
+        logger.info('Detected extension path change (possible reinstall)', { storedExtensionPath, currentExtensionPath });
+      }
+
+      const shouldShowWalkthrough = shownFor !== currentVersion || (installedMtime !== 0 && storedInstallMtime !== installedMtime) || pathChanged || markerMissingOrStale;
+
+      if (shouldShowWalkthrough) {
+        // Opens the DevPilot activity view which contains the welcome sidebar
+        try {
+          await vscode.commands.executeCommand('workbench.view.extension.devpilot');
+          // ensure the sidebar view has focus
+          await vscode.commands.executeCommand('workbench.action.focusSideBar');
+        } catch (cmdErr) {
+          logger.warn('Failed to open DevPilot activity view', { error: String(cmdErr) });
+          // Fallback: open README preview
+          try {
+            if (ext) {
+              await vscode.commands.executeCommand('markdown.showPreview', vscode.Uri.joinPath(vscode.Uri.file(ext.extensionPath), 'README.md'));
+            }
+          } catch (_) {
+            // ignore
+          }
+        }
+
+        // Also open the DevPilot sidebar so the Welcome view is visible after install/reinstall
+        try {
+          await vscode.commands.executeCommand('workbench.view.extension.devpilot');
+        } catch (openErr) {
+          logger.debug('Could not open DevPilot activity view', { error: String(openErr) });
+        }
+
+        // Persist both version, install mtime and extensionPath so we can detect future reinstalls
+        try {
+          await context.globalState.update('devpilot.tutorialShownForVersion', currentVersion);
+          if (installedMtime) {
+            await context.globalState.update('devpilot.extensionInstallMtime', installedMtime);
+          }
+          if (currentExtensionPath) {
+            await context.globalState.update('devpilot.extensionPath', currentExtensionPath);
+          }
+          // Write or update on-disk marker inside extension folder so future reinstalls are detectable
+          try {
+            if (ext && ext.extensionPath) {
+              const markerPath = path.join(ext.extensionPath, '.devpilot_installed');
+              await fs.promises.writeFile(markerPath, currentVersion, { encoding: 'utf8' });
+            }
+          } catch (merr) {
+            logger.debug('Could not write install marker inside extension folder', { error: String(merr) });
+          }
+        } catch (uErr) {
+          logger.warn('Failed to update tutorial shown state', { error: String(uErr) });
+        }
+
+        logger.info('Displayed getting-started walkthrough for version', { version: currentVersion, installedMtime });
+      }
+    } catch (walkErr) {
+      logger.warn('Failed to show onboarding walkthrough', { error: String(walkErr) });
+    }
+
   // Local profile service (for learning progress tracking - backward compatible)
   // Note: GoogleAuthService no longer exists, using authService for OAuth
   // If you need local profiles, implement a separate LocalProfileService
@@ -409,6 +513,17 @@ export async function activate(context: vscode.ExtensionContext) {
         logger.error(`Failed to register OAuth command: ${cmd}`, { error: String(error) });
       }
     };
+
+    // Utility: Show Getting Started walkthrough on demand
+    earlyRegister('devpilot.showGettingStarted', async () => {
+      try {
+        const extId = 'devpilotorg.devpilot';
+        await vscode.commands.executeCommand('workbench.action.openWalkthrough', `${extId}#getting-started`);
+      } catch (err) {
+        logger.warn('Failed to open getting-started walkthrough', { error: String(err) });
+        vscode.window.showInformationMessage('DevPilot: Unable to open Getting Started walkthrough.');
+      }
+    });
 
     // Main Sign In - Offers both GitHub (primary) and Google (fallback)
     earlyRegister("devpilot.signIn", async () => {

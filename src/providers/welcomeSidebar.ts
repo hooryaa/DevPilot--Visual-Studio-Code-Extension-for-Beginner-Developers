@@ -5,6 +5,9 @@
  */
 
 import * as vscode from "vscode";
+import * as fs from 'fs';
+import * as path from 'path';
+import { marked } from 'marked';
 import { getLogger } from "../core/logger";
 import { recordUserAction } from "../core/webviewIntegration";
 
@@ -16,7 +19,7 @@ export class WelcomeSidebarProvider implements vscode.WebviewViewProvider {
 
   constructor(private readonly context: vscode.ExtensionContext) {}
 
-  public resolveWebviewView(
+  public async resolveWebviewView(
     webviewView: vscode.WebviewView,
     context: vscode.WebviewViewResolveContext,
     _token: vscode.CancellationToken
@@ -31,8 +34,42 @@ export class WelcomeSidebarProvider implements vscode.WebviewViewProvider {
         localResourceRoots: [this.context.extensionUri],
       };
 
-      console.log('[WelcomeSidebar] Loading HTML content');
-      webviewView.webview.html = this.getHtmlContent(webviewView.webview);
+      // Load up-to-date README.md and render into the webview so content always reflects latest docs
+      try {
+        const readmePath = vscode.Uri.joinPath(this.context.extensionUri, 'README.md');
+        const readmeFsPath = readmePath.fsPath;
+        let readmeRaw = '';
+        try {
+          readmeRaw = await fs.promises.readFile(readmeFsPath, { encoding: 'utf8' });
+        } catch (rfErr) {
+          logger.warn('Could not read README.md for welcome sidebar', { error: String(rfErr) });
+        }
+
+        // Use marked renderer to rewrite image and link URLs to webview URIs
+        const renderer = new marked.Renderer();
+        const originalImage = renderer.image;
+        renderer.image = (href, title, text) => {
+          try {
+            if (href && !href.startsWith('http')) {
+              const resourceUri = webviewView.webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, href));
+              href = resourceUri.toString();
+            }
+          } catch (_e) {
+            // ignore
+          }
+          return originalImage.call(renderer, href, title, text);
+        };
+
+        const readmeHtml = readmeRaw
+          ? await Promise.resolve(marked(readmeRaw, { renderer }))
+          : '<p>Welcome to DevPilot</p>';
+
+        console.log('[WelcomeSidebar] Loading HTML content from README.md');
+        webviewView.webview.html = this.getHtmlContent(webviewView.webview, readmeHtml);
+      } catch (renderErr) {
+        logger.warn('Failed to render README into welcome sidebar', { error: String(renderErr) });
+        webviewView.webview.html = this.getHtmlContent(webviewView.webview);
+      }
 
       // Handle messages from webview
       console.log('[WelcomeSidebar] Setting up message handler');
@@ -68,12 +105,45 @@ export class WelcomeSidebarProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private getHtmlContent(webview: vscode.Webview): string {
+  // Attempt to reveal the sidebar view when requested
+  public async reveal(preserveFocus: boolean = false) {
+    try {
+      if (this.view && typeof this.view.show === 'function') {
+        try {
+          // Prefer the local API to show the view if available
+          (this.view as any).show(preserveFocus);
+          return true;
+        } catch (err) {
+          // fall through to command-based reveal
+        }
+      }
+
+      // Open the extension view container first, then focus sidebar
+      await vscode.commands.executeCommand('workbench.view.extension.devpilot');
+      // Give VS Code a moment to resolve the view
+      await new Promise((r) => setTimeout(r, 250));
+      try {
+        if (this.view && typeof this.view.show === 'function') {
+          (this.view as any).show(preserveFocus);
+        }
+      } catch (_e) {
+        // ignore
+      }
+
+      return true;
+    } catch (error) {
+      logger.warn('Failed to reveal welcome sidebar', { error: String(error) });
+      return false;
+    }
+  }
+
+  private getHtmlContent(webview: vscode.Webview, readmeHtml: string = ''): string {
     return `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           * {
             margin: 0;
@@ -223,6 +293,16 @@ export class WelcomeSidebarProvider implements vscode.WebviewViewProvider {
             font-size: 10px;
           }
 
+          .readme-content {
+            margin-top: 12px;
+            padding: 8px;
+            background: var(--vscode-editorWidget-background);
+            border-radius: 6px;
+            overflow: auto;
+            font-size: 12px;
+            line-height: 1.4;
+          }
+
           .info-box {
             background: var(--vscode-editor-hoverHighlightBackground);
             border-left: 3px solid #ffaa00;
@@ -278,6 +358,8 @@ export class WelcomeSidebarProvider implements vscode.WebviewViewProvider {
 
           <!-- Main Features -->
           <div class="section">
+            <!-- Insert README content when available -->
+            ${readmeHtml ? `<div class="readme-content">${readmeHtml}</div>` : ''}
             <div class="section-title"> Main Features</div>
             <div class="feature-grid">
               <div class="feature-card">
@@ -430,6 +512,58 @@ export function registerWelcomeSidebar(
         welcomeSidebarProvider
       )
     );
+
+    // Register a command so other code (or users) can explicitly open the welcome
+    context.subscriptions.push(
+      vscode.commands.registerCommand('devpilot.showWelcome', async () => {
+        try {
+          await welcomeSidebarProvider.reveal(false);
+        } catch (err) {
+          logger.warn('devpilot.showWelcome failed', { error: String(err) });
+        }
+      })
+    );
+
+    // Detect first-run or reinstall by presence of a simple marker file in extensionPath.
+    (async () => {
+      try {
+        const markerPath = path.join(context.extensionPath, '.devpilot_installed');
+        let firstInstall = false;
+        try {
+          await fs.promises.stat(markerPath);
+        } catch {
+          firstInstall = true;
+        }
+
+        if (firstInstall) {
+          try {
+            // Write marker so subsequent activations don't re-trigger
+            await fs.promises.writeFile(markerPath, new Date().toISOString(), { encoding: 'utf8' });
+          } catch (writeErr) {
+            logger.warn('Could not write install marker', { error: String(writeErr) });
+          }
+
+          // Try to reveal the welcome view automatically; if it fails, show a one-click notification
+          const revealed = await welcomeSidebarProvider.reveal(false);
+          if (!revealed) {
+            const openLabel = 'Open DevPilot Welcome';
+            const selection = await vscode.window.showInformationMessage(
+              'Thanks for installing DevPilot — open the DevPilot Welcome?',
+              openLabel
+            );
+            if (selection === openLabel) {
+              try {
+                await vscode.commands.executeCommand('devpilot.showWelcome');
+              } catch (cmdErr) {
+                logger.warn('Failed to execute devpilot.showWelcome', { error: String(cmdErr) });
+              }
+            }
+          }
+        }
+      } catch (err) {
+        logger.warn('Error during welcome sidebar first-run detection', { error: String(err) });
+      }
+    })();
 
     logger.info("Welcome sidebar registered");
     return welcomeSidebarProvider;
