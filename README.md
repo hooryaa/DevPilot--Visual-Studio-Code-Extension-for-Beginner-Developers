@@ -123,12 +123,12 @@ Install the latest VSIX via `Extensions: Install from VSIX...` in Visual Studio 
 ```mermaid
 flowchart TD
   subgraph VSCode["VS Code Host"]
-    EXT[DevPilot Extension<br/>(activate)]
+    EXT[DevPilot Extension (activate)]
     subgraph CORE["Core Services"]
       SM[StateManager / StateService]
       AST[AST Analyzer (Babel)]
       UCR[UnifiedCommandRouter]
-      AC[Auth Coordinators<br/>GitHub & Google]
+      AC[Auth Coordinators - GitHub & Google]
       TODO[TODO & Issue Trackers]
       PT[Progress / Achievements]
       US[UnifiedSuggestion Engine]
@@ -136,7 +136,7 @@ flowchart TD
     subgraph UI["Providers & UI"]
       HOV[Hover & Inline Providers]
       REF[Refactor / Code Actions]
-      WEB[Webviews (React) — Dashboard / Chat / Learning]
+      WEB[Webviews (React) - Dashboard / Chat / Learning]
       UIH[CodeLens / Decorations / Diagnostics]
     end
   end
@@ -159,7 +159,7 @@ flowchart TD
   EXT --> AC
 
   %% External systems
-  OAuthWorker[Cloudflare OAuth Worker<br/>(loopback / callback)]
+  OAuthWorker[Cloudflare OAuth Worker (loopback / callback)]
   GitHub[GitHub API / OAuth]
   OpenAI[OpenAI API (optional)]
   VSE[VS Code secrets / globalState (storage)]
