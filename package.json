@@ -10,7 +10,7 @@
   "icon": "media/icon.jpg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/devpilot/devpilot"
+    "url": "https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers.git"
   },
   "engines": {
     "vscode": "^1.116.0"
