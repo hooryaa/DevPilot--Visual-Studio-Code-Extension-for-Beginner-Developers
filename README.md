@@ -32,9 +32,7 @@ It combines offline AST‑powered analysis, educational tooling, productivity fe
 
 ## 🎥 Quick Demo
 
-Watch DevPilot in action:
-
-[Project Demo](https://youtu.be/ocs4PCVTKS0)
+Watch DevPilot in action: [Project Demo (YouTube)](https://youtu.be/ocs4PCVTKS0)
 
 ---
 
@@ -48,7 +46,15 @@ Watch DevPilot in action:
 
 | Learning | Translation |
 |----------|-------------|
-| ![](media/screenshots/Learning%20Resources.png) | ![](media/screenshots/Translation.png) |
+| ![](media/screenshots/LearningResources.png) | ![](media/screenshots/Translation.png) |
+
+---
+
+## More Screenshots
+
+| Streak & Progress | Todo Sync |
+|-------------------|-----------|
+| ![](media/screenshots/StreakTranslate.png) | ![](media/screenshots/TodoSync.png) |
 
 ---
 
