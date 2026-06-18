@@ -396,7 +396,7 @@ Content-Type: application/json
     </div>
     <div class="footer">
       <p><a href="https://devpilot.dev/unsubscribe?token=xyz">Unsubscribe from emails</a></p>
-      <p>&copy; 2024 DevPilot. All rights reserved.</p>
+      <p>&copy; 2024 DevPilot.</p>
     </div>
   </div>
 </body>
