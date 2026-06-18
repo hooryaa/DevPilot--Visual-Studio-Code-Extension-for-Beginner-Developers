@@ -123,16 +123,16 @@ Install the latest VSIX via `Extensions: Install from VSIX...` in Visual Studio 
 ```mermaid
 flowchart TD
   EXT[DevPilot Extension - activate]
-  AST[AST Analyzer (Babel)]
+  AST[AST Analyzer Babel]
   UCR[Unified Command Router]
   SM[State Manager]
-  WEB[Webviews - React Dashboard / Chat / Learning]
-  HOV[Hover & Inline Providers]
-  REF[Refactor / Code Actions]
-  AC[Auth Coordinators - GitHub & Google]
+  WEB[Webviews React Dashboard Chat Learning]
+  HOV[Hover and Inline Providers]
+  REF[Refactor Code Actions]
+  AC[Auth Coordinators GitHub Google]
   OAuthWorker[Cloudflare OAuth Worker]
   GitHub[GitHub API]
-  OpenAI[OpenAI API (optional)]
+  OpenAI[OpenAI API optional]
   VSE[VS Code storage]
 
   EXT --> AST
