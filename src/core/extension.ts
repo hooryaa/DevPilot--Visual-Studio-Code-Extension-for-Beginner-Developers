@@ -16,7 +16,9 @@ import { initializeWorkspaceContext } from "./workspaceContext";
 import { NullAIProvider, setAIProvider, getAIProvider } from "./aiProvider";
 import { getAIResponse } from "../utils/aiAPI";
 import { OpenAIProvider } from "./openaiProvider";
+import { GeminiProvider } from "./geminiProvider";
 import FreeGPTProvider from "./freegptProvider";
+import { buildMissingApiKeyMessage, buildProviderSetupHint, normalizeAIProvider } from "./providerConfig";
 import { registerSuggestFixCommand } from "./suggestFixCommand";
 import { initializeTODOPersistence } from "./todoPersistence";
 import { initializeStagedAnalyzer } from "./stagedAnalysis";
@@ -155,6 +157,110 @@ async function handleChatMessage(payload: any, webview: vscode.Webview) {
       type: 'chatReply',
       payload: { text: '❌ AI service unavailable. Please try again.' }
     });
+  }
+}
+
+async function resolveStoredApiKey(
+  context: vscode.ExtensionContext,
+  secretKey: string,
+  legacyKey: string
+): Promise<string | undefined> {
+  const secretValue = await context.secrets.get(secretKey);
+  if (secretValue) {
+    return secretValue;
+  }
+
+  const migratedValue = context.globalState.get<string>(legacyKey);
+  if (migratedValue) {
+    await context.secrets.store(secretKey, migratedValue);
+    await context.globalState.update(legacyKey, undefined);
+    return migratedValue;
+  }
+
+  return undefined;
+}
+
+async function initializeConfiguredAIProvider(
+  context: vscode.ExtensionContext,
+  showGuidance = false
+): Promise<void> {
+  setAIProvider(new NullAIProvider());
+
+  const config = vscode.workspace.getConfiguration("devpilot");
+  const selectedProvider = normalizeAIProvider(
+    config.get<string>("aiProvider") || (await context.globalState.get<string>("devpilot.aiProvider")) || "local"
+  );
+
+  await context.globalState.update("devpilot.aiProvider", selectedProvider);
+
+  const openaiKey = await resolveStoredApiKey(context, "devpilot.openai.key", "devpilot.openaiKey");
+  const geminiKey = await resolveStoredApiKey(context, "devpilot.gemini.key", "devpilot.geminiKey");
+
+  const tryProvider = async (provider: typeof selectedProvider) => {
+    if (provider === "openai" && openaiKey) {
+      const aiProvider = new OpenAIProvider(openaiKey);
+      if (aiProvider.isReady()) {
+        setAIProvider(aiProvider);
+        logger.info("OpenAI provider initialized from configuration");
+        return true;
+      }
+    }
+
+    if (provider === "gemini" && geminiKey) {
+      const aiProvider = new GeminiProvider(geminiKey);
+      if (aiProvider.isReady()) {
+        setAIProvider(aiProvider);
+        logger.info("Gemini provider initialized from configuration");
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  if (await tryProvider(selectedProvider)) {
+    return;
+  }
+
+  if (selectedProvider !== "local") {
+    try {
+      const freegptUrl = config.get<string>("freegptUrl") || "";
+      if (freegptUrl) {
+        const freeProv = await FreeGPTProvider.create(freegptUrl);
+        if (freeProv.isReady()) {
+          setAIProvider(freeProv);
+          logger.info("FreeGPT provider initialized as fallback", { freegptUrl });
+          return;
+        }
+      } else {
+        const autoProv = await FreeGPTProvider.create();
+        if (autoProv.isReady()) {
+          setAIProvider(autoProv);
+          logger.info("FreeGPT provider auto-detected as fallback");
+          return;
+        }
+      }
+    } catch (err) {
+      logger.debug("FreeGPT fallback initialization failed", { error: String(err) });
+    }
+  }
+
+  if (showGuidance) {
+    const hasShownSetupHint = context.globalState.get<boolean>("devpilot.aiSetupPromptShown") || false;
+    if (!hasShownSetupHint) {
+      const msg = buildMissingApiKeyMessage(selectedProvider);
+      const action = await vscode.window.showInformationMessage(
+        `${msg}\n\n${buildProviderSetupHint(selectedProvider)}`,
+        { modal: false },
+        "Configure AI Provider"
+      );
+
+      if (action === "Configure AI Provider") {
+        await vscode.commands.executeCommand("devpilot.configureAIProvider");
+      }
+
+      await context.globalState.update("devpilot.aiSetupPromptShown", true);
+    }
   }
 }
 
@@ -1029,6 +1135,35 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     });
 
+    earlyRegister("devpilot.configureAIProvider", async () => {
+      try {
+        const choice = await vscode.window.showQuickPick(
+          [
+            { label: "OpenAI", description: "Use OpenAI for chat, explanations, and commit generation" },
+            { label: "Gemini", description: "Use Gemini for chat, explanations, and commit generation" },
+            { label: "Local (FreeGPT)", description: "Use a local FreeGPT-compatible server if available" },
+          ],
+          { placeHolder: "Choose your AI provider" }
+        );
+
+        if (!choice) {
+          return;
+        }
+
+        await context.globalState.update("devpilot.aiProvider", choice.label.toLowerCase().includes("gemini") ? "gemini" : choice.label.toLowerCase().includes("openai") ? "openai" : "local");
+
+        if (choice.label === "OpenAI") {
+          await vscode.commands.executeCommand("devpilot.setOpenAIKey");
+        } else if (choice.label === "Gemini") {
+          await vscode.commands.executeCommand("devpilot.setGeminiKey");
+        } else {
+          await vscode.window.showInformationMessage("Local mode is ready. If you use a self-hosted FreeGPT server, set devpilot.freegptUrl in settings.");
+        }
+      } catch (error) {
+        logger.error("Failed to configure AI provider", { error: String(error) });
+      }
+    });
+
     // Set OpenAI API Key (required for chat and other AI features)
     earlyRegister("devpilot.setOpenAIKey", async () => {
       try {
@@ -1046,18 +1181,16 @@ export async function activate(context: vscode.ExtensionContext) {
           return;
         }
 
-        // Validate basic key format
         if (!apiKey.startsWith("sk-")) {
           vscode.window.showWarningMessage("⚠️ API key should start with 'sk-'. Please verify you copied it correctly.");
           logger.warn("Invalid API key format provided");
           return;
         }
 
-        // Store the key securely
         await context.secrets.store("devpilot.openai.key", apiKey);
+        await context.globalState.update("devpilot.aiProvider", "openai");
         logger.info("OpenAI API key stored securely");
 
-        // Initialize OpenAI provider with the key
         try {
           const openaiProvider = new OpenAIProvider(apiKey);
           setAIProvider(openaiProvider);
@@ -1073,6 +1206,68 @@ export async function activate(context: vscode.ExtensionContext) {
         const errorMsg = error instanceof Error ? error.message : String(error);
         logger.error("Failed to set OpenAI API key", { error: errorMsg });
         vscode.window.showErrorMessage(`DevPilot: Failed to set API key - ${errorMsg}`);
+      }
+    });
+
+    earlyRegister("devpilot.setGeminiKey", async () => {
+      try {
+        logger.info("Command: devpilot.setGeminiKey triggered");
+
+        const apiKey = await vscode.window.showInputBox({
+          prompt: "Enter your Gemini API Key",
+          placeHolder: "AIza...",
+          password: true,
+          ignoreFocusOut: true,
+        });
+
+        if (!apiKey) {
+          logger.info("User cancelled Gemini API key setup");
+          return;
+        }
+
+        if (!apiKey.startsWith("AIza")) {
+          vscode.window.showWarningMessage("⚠️ Gemini API keys usually start with 'AIza'. Please verify you copied it correctly.");
+          logger.warn("Invalid Gemini API key format provided");
+          return;
+        }
+
+        await context.secrets.store("devpilot.gemini.key", apiKey);
+        await context.globalState.update("devpilot.aiProvider", "gemini");
+        logger.info("Gemini API key stored securely");
+
+        try {
+          const geminiProvider = new GeminiProvider(apiKey);
+          setAIProvider(geminiProvider);
+          logger.info("Gemini provider initialized with user-provided key");
+        } catch (initError) {
+          logger.warn("Failed to initialize Gemini provider", { error: String(initError) });
+        }
+
+        vscode.window.showInformationMessage("✅ Gemini API key saved. DevPilot can use Gemini for AI features.");
+      } catch (error) {
+        const errorMsg = error instanceof Error ? error.message : String(error);
+        logger.error("Failed to set Gemini API key", { error: errorMsg });
+        vscode.window.showErrorMessage(`DevPilot: Failed to save Gemini API key - ${errorMsg}`);
+      }
+    });
+
+    earlyRegister("devpilot.removeGeminiKey", async () => {
+      try {
+        const confirmed = await vscode.window.showWarningMessage(
+          "Remove Gemini API key?",
+          { modal: true },
+          "Yes, remove",
+          "Cancel"
+        );
+
+        if (confirmed === "Yes, remove") {
+          await context.secrets.delete("devpilot.gemini.key");
+          await context.globalState.update("devpilot.geminiKey", undefined);
+          setAIProvider(new NullAIProvider());
+          vscode.window.showInformationMessage("✅ Gemini API key removed. DevPilot will fall back to offline mode or local providers.");
+        }
+      } catch (error) {
+        logger.error("Failed to remove Gemini API key", { error: String(error) });
       }
     });
 
@@ -1512,69 +1707,8 @@ export async function activate(context: vscode.ExtensionContext) {
     logger.warn("[DevPilot] Failed to initialize staged analyzer", { error: String(error) });
   }
 
-  // AI Provider (start with offline mode)
-  setAIProvider(new NullAIProvider());
-
-  // Check for saved OpenAI key
-  const secretOpenAiKey = await context.secrets.get("devpilot.openai.key");
-  let openaiKey = secretOpenAiKey;
-
-  if (!openaiKey) {
-    const migratedKey = context.globalState.get<string>("devpilot.openaiKey");
-    if (migratedKey) {
-      // Migrate legacy stored key to secure secrets storage
-      await context.secrets.store("devpilot.openai.key", migratedKey);
-      await context.globalState.update("devpilot.openaiKey", undefined);
-      openaiKey = migratedKey;
-      logger.info("Migrated OpenAI key from globalState to secure storage");
-    }
-  }
-
-  if (openaiKey) {
-    try {
-      const aiProvider = new OpenAIProvider(openaiKey);
-      if (aiProvider.isReady()) {
-        setAIProvider(aiProvider);
-        logger.info("OpenAI provider initialized");
-      }
-    } catch (error) {
-      logger.warn("Failed to initialize OpenAI", { error: String(error) });
-    }
-  }
-
-  // If no AI provider is available yet, try configured FreeGPT URL or probe local default
-  try {
-    const current = getAIProvider();
-    if (!current.isAvailable) {
-      const cfg = vscode.workspace.getConfiguration("devpilot");
-      const freegptUrl = cfg.get<string>("freegptUrl") || "";
-
-      if (freegptUrl) {
-        try {
-          const freeProv = await FreeGPTProvider.create(freegptUrl);
-          if (freeProv.isReady()) {
-            setAIProvider(freeProv);
-            logger.info("FreeGPT provider initialized from configuration", { freegptUrl });
-          }
-        } catch (err) {
-          logger.warn("Failed to initialize FreeGPT from config", { error: String(err), freegptUrl });
-        }
-      } else {
-        // Try default local server probe
-        try {
-          const autoProv = await FreeGPTProvider.create();
-          if (autoProv.isReady()) {
-            setAIProvider(autoProv);
-            logger.info("FreeGPT provider auto-detected at default URL");
-          }
-        } catch (err) {
-          logger.debug("FreeGPT auto-detection failed", { error: String(err) });
-        }
-      }
-    }
-  } catch (err) {
-    logger.debug("FreeGPT detection encountered an error", { error: String(err) });
-  }
+  // AI Provider initialization with provider-aware setup
+  await initializeConfiguredAIProvider(context, true);
 
   /* ========== Register Native Providers ==========*/
 

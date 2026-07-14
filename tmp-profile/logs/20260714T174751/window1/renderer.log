@@ -1,0 +1,48 @@
+2026-07-14 17:47:55.938 [info] Started local extension host with pid 3820.
+2026-07-14 17:47:56.107 [info] Started initializing default profile extensions in extensions installation folder. file:///c%3A/Users/user/DevPilot-Final-version/tmp-extensions
+2026-07-14 17:47:56.663 [info] Completed initializing default profile extensions in extensions installation folder. file:///c%3A/Users/user/DevPilot-Final-version/tmp-extensions
+2026-07-14 17:47:57.246 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-07-14 17:47:58.603 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-07-14 17:47:59.830 [info] [perf] Render performance baseline is 120ms
+2026-07-14 17:48:00.831 [error] Error: Error while decrypting the ciphertext provided to safeStorage.decryptString.
+    at Al.decrypt (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:422:20093)
+    at Object.call (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:409:5334)
+    at Ld.onPromise (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:14315)
+    at Ld.onRawMessage (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:13738)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:13029)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b._deliverQueue (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3333)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3667)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:5954)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3562)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:6152)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3562)
+    at ee (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:9578)
+    at IpcMainImpl.t (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:412:13212)
+    at IpcMainImpl.emit (node:events:519:28)
+    at Session.<anonymous> (node:electron/js2c/browser_init:2:113651)
+    at Session.emit (node:events:519:28)
+2026-07-14 17:48:02.248 [info] [AccountPolicyGate] apply: state=inactive, reason=undefined, isRestricted=false
+2026-07-14 17:48:23.273 [info] Extension host (LocalProcess pid: 3820) is unresponsive.
+2026-07-14 17:48:23.758 [error] Error: Aborted onWillSaveTextDocument-event after 1750ms
+    at vscode-file://vscode-app/c:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/vs/workbench/workbench.desktop.main.js:1039:13000
+2026-07-14 17:48:24.668 [info] UNRESPONSIVE extension host: starting to profile NOW
+2026-07-14 17:48:24.701 [error] [Extension Host] (node:3820) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `Code --trace-deprecation ...` to show where the warning was created)
+2026-07-14 17:48:24.702 [error] [Extension Host] (node:3820) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-07-14 17:48:24.704 [info] Extension host (LocalProcess pid: 3820) is responsive.
+2026-07-14 17:48:24.706 [info] UNRESPONSIVE extension host: received responsive event and cancelling profiling session
+2026-07-14 17:48:56.440 [warning] [perf] Renderer reported VERY LONG TASK (3484ms), starting profiling session '4576de9a-11d3-4230-98e6-c959fff4393b'
+2026-07-14 17:49:47.753 [error] missing media in walkthrough step: getting-started@undefined: Error: missing media in walkthrough step: getting-started@undefined
+    at vscode-file://vscode-app/c:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/vs/workbench/workbench.desktop.main.js:4181:20486
+    at Array.map (<anonymous>)
+    at vscode-file://vscode-app/c:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/vs/workbench/workbench.desktop.main.js:4181:20386
+    at async Promise.all (index 0)
+    at async lut.registerExtensionWalkthroughContributions (vscode-file://vscode-app/c:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/vs/workbench/workbench.desktop.main.js:4181:19720)
+2026-07-14 17:49:48.489 [warning] Authentication provider devpilot-google was not declared in the Extension Manifest.
+2026-07-14 17:51:49.491 [info] Auto updating outdated extensions. github.copilot-chat
+2026-07-14 17:52:49.675 [warning] Attempted to report in-progress status for unknown chat session type 'copilot-cloud-agent'
+2026-07-14 17:52:49.676 [warning] Attempted to report in-progress status for unknown chat session type 'copilotcli'
+2026-07-14 17:52:49.677 [warning] Attempted to report in-progress status for unknown chat session type 'claude-code'

@@ -1,0 +1,424 @@
+[12:49:48.473] [INFO] [AuthProvider] Initializing AuthProvider (loopback mechanism) | {"clientId":"870407549580-blv0bht..."}
+[12:49:48.475] [INFO] [AuthProvider] URI handler registered for OAuth callback
+[12:49:48.475] [INFO] [AuthProvider] AuthProvider registered successfully
+[12:49:48.478] [INFO] [DevPilot] Step 1/11: Logging initialized
+[12:49:48.479] [INFO] [DevPilot] Step 2/11: Global error handler registered
+[12:49:48.479] [DEBUG] [StatePersistence] Initializing memory cache
+[12:49:48.480] [INFO] [DevPilot] Step 3/11: StateManager initialized (canonical state holder)
+[12:49:48.481] [INFO] [DevPilot] Step 4/11: StateService initialized (reactive wrapper)
+[12:49:48.482] [INFO] [AuthStateSync] Auth state service initialized
+[12:49:48.482] [INFO] [DevPilot] Step 5/11: AuthStateService initialized (auth state sync)
+[12:49:48.483] [INFO] [DevPilot] Workspace context initialized
+[12:49:48.483] [INFO] [DevPilot] 🚀 DevPilot core infrastructure initialized (Phase 1)
+[12:49:48.483] [INFO] [Phase3Activation] Initializing Phase 3 services...
+[12:49:48.484] [INFO] [Phase3Activation] StateService initialized and registered
+[12:49:48.485] [INFO] [FeatureFlagService] Feature flags initialized | {"enabled":["translation","aiCompletion","dashboard","achievements","issueDetection","codeRefactoring"],"disabled":[]}
+[12:49:48.485] [INFO] [Phase3Activation] FeatureFlagService initialized and registered
+[12:49:48.485] [INFO] [RateLimiter] RateLimiter initialized | {"perMinute":60,"perHour":600,"perDay":5000}
+[12:49:48.486] [INFO] [Phase3Activation] RateLimiter initialized and registered
+[12:49:48.486] [INFO] [StateService] No stored state found, using initial state
+[12:49:48.487] [INFO] [Phase3Activation] State loaded | {"version":2,"usageCount":0}
+[12:49:48.488] [INFO] [Phase3Activation] State change subscribers registered
+[12:49:48.488] [INFO] [Phase3Activation] Legacy registerProviders function deprecated - use unified providers in extension.ts
+[12:49:48.488] [INFO] [Phase3Activation] Phase 3 services initialized successfully
+[12:49:48.488] [INFO] [DevPilot] Step 6/11: Phase 3 services initialized
+[12:49:48.489] [INFO] [UnifiedTodoTracker] Unified TODO tracker initialized
+[12:49:48.490] [INFO] [DevPilot] Step 7a/11: Unified TODO tracker initialized
+[12:49:48.490] [INFO] [UnifiedIssueTracker] Issue tracker initialized
+[12:49:48.491] [INFO] [DevPilot] Step 7b/11: Unified issue tracker initialized
+[12:49:48.491] [INFO] [UnifiedCommandRouter] Initializing UnifiedCommandRouter
+[12:49:48.492] [INFO] [UnifiedCommandRouter] Registered 6 command handlers
+[12:49:48.493] [INFO] [UnifiedCommandRouter] Registered 6 VS Code commands
+[12:49:48.493] [INFO] [UnifiedCommandRouter] UnifiedCommandRouter initialized successfully
+[12:49:48.494] [INFO] [DevPilot] Step 8/11: UnifiedCommandRouter initialized (command gateway)
+[12:49:48.494] [INFO] [DevPilot] TODO persistence initialized
+[12:49:48.495] [INFO] [ProgressTrackingSystem] DevPilot Progress Tracking System initialized
+[12:49:48.495] [INFO] [DevPilot] Step 8b/11: Progress Tracking System initialized (learning, streak, TODOs)
+[12:49:48.496] [INFO] [UserDataRestoration] User Data Restoration Service initialized
+[12:49:48.496] [INFO] [DevPilot] Step 8c/11: User Data Restoration Service initialized (persistence + restore)
+[12:49:48.496] [INFO] [DevPilot] 🚀 Domain services initialized (Phase 2)
+[12:49:48.497] [INFO] [GitHubAuthCoordinator] [GitHubAuth] Coordinator initialized
+[12:49:48.497] [INFO] [GitHubAuthCoordinator] [GitHubAuth] GitHub auth coordinator initialized
+[12:49:48.497] [INFO] [DevPilot] Step 9a/11: GitHub auth coordinator initialized
+[12:49:48.498] [INFO] [GoogleAuthCoordinator] Initializing Google OAuth coordinator
+[12:49:48.498] [INFO] [EnhancedAuthService] Enhanced AuthService initialized | {"useLoopback":true}
+[12:49:48.507] [DEBUG] [AuthService] No stored token found
+[12:49:48.509] [DEBUG] [AuthProvider] getSessions called | {"scopeCount":0}
+[12:49:48.510] [DEBUG] [AuthProvider] getSessions called | {"scopeCount":0}
+[12:49:48.510] [DEBUG] [AuthProvider] getSessions called | {"scopeCount":0}
+[12:49:48.516] [DEBUG] [EnhancedAuthService] [GetToken] No stored token found
+[12:49:48.527] [DEBUG] [AuthStateSync] Status bar updated: not signed in
+[12:49:48.528] [WARN] [GoogleAuthCoordinator] Failed to restore previous session | {"error":"Error: command 'devpilot.authStateChanged' not found"}
+[12:49:48.528] [INFO] [GoogleAuthCoordinator] Google OAuth coordinator initialized successfully
+[12:49:48.530] [INFO] [DevPilot] Step 9b/11: Google auth coordinator initialized
+[12:49:48.530] [INFO] [DevPilot] AuthService available
+[12:49:48.539] [INFO] [AuthStateSync] Dependent services updated | {"features":{"canAchievements":false,"canStreaks":false,"canMetrics":false,"canEmailNotifications":false,"canBackupSync":false}}
+[12:49:48.540] [INFO] [AuthStateSync] Auth state: UNAUTHENTICATED
+[12:49:48.540] [INFO] [AuthStateSync] No active authentication found
+[12:49:48.541] [DEBUG] [DevPilot] Initialized state key: devpilot.streak.current | {"value":0}
+[12:49:48.545] [DEBUG] [DevPilot] Initialized state key: devpilot.streak.longest | {"value":0}
+[12:49:48.548] [DEBUG] [DevPilot] Initialized state key: devpilot.streak.lastActiveDate | {"value":"2026-07-14T12:49:48.545Z"}
+[12:49:48.555] [DEBUG] [DevPilot] Initialized state key: devpilot.streak.points | {"value":0}
+[12:49:48.558] [DEBUG] [DevPilot] Initialized state key: devpilot.lastBuildTime | {"value":0}
+[12:49:48.566] [DEBUG] [DevPilot] Initialized state key: devpilot.learningProgress | {"value":0}
+[12:49:48.573] [DEBUG] [DevPilot] Initialized state key: devpilot.completedTodos | {"value":0}
+[12:49:48.584] [DEBUG] [DevPilot] Initialized state key: devpilot.totalTodos | {"value":0}
+[12:49:48.587] [DEBUG] [DevPilot] Initialized state key: devpilot.achievements | {"value":[{"id":"speed-demon","name":"Speed Demon","description":"Generate 3 commit messages in one session","unlocked":false,"unlockedAt":null,"icon":"🏆"},{"id":"week-warrior","name":"Week Warrior","description":"Build a 7-day streak","unlocked":false,"unlockedAt":null,"icon":"🔒"},{"id":"code-master","name":"Code Master","description":"Reach 80% learning progress","unlocked":false,"unlockedAt":null,"icon":"🔒"}]}
+[12:49:48.587] [INFO] [DevPilot] Dashboard state values initialized
+[12:49:48.825] [INFO] [DevPilot] Displayed getting-started walkthrough for version | {"version":"1.0.0","installedMtime":1784033383183}
+[12:49:48.826] [INFO] [DevPilot] Registering OAuth commands early...
+[12:49:48.827] [INFO] [DevPilot] OAuth command registered early: devpilot.showGettingStarted
+[12:49:48.827] [INFO] [DevPilot] OAuth command registered early: devpilot.signIn
+[12:49:48.828] [INFO] [DevPilot] OAuth command registered early: devpilot.signInGitHub
+[12:49:48.829] [INFO] [DevPilot] OAuth command registered early: devpilot.signInGoogle
+[12:49:48.830] [INFO] [DevPilot] OAuth command registered early: devpilot.signOut
+[12:49:48.830] [INFO] [DevPilot] OAuth command registered early: devpilot.checkAuthStatus
+[12:49:48.831] [INFO] [DevPilot] OAuth command registered early: devpilot.configureGoogleOAuth
+[12:49:48.831] [INFO] [DevPilot] OAuth command registered early: devpilot.pasteToken
+[12:49:48.832] [INFO] [DevPilot] OAuth command registered early: devpilot.configureAIProvider
+[12:49:48.833] [INFO] [DevPilot] OAuth command registered early: devpilot.setOpenAIKey
+[12:49:48.834] [INFO] [DevPilot] OAuth command registered early: devpilot.setGeminiKey
+[12:49:48.835] [INFO] [DevPilot] OAuth command registered early: devpilot.removeGeminiKey
+[12:49:48.836] [INFO] [DevPilot] OAuth command registered early: devpilot.removeOpenAIKey
+[12:49:48.837] [INFO] [DevPilot] ✅ OAuth commands, including paste token fallback, registered successfully
+[12:49:48.847] [INFO] [DevPilot] Global auth state change handler registered
+[12:49:48.848] [ERROR] [DevPilot] [DevPilot] Failed to register URI handler | {"error":"Error: Protocol handler already registered for extension [object Object]"}
+[12:49:48.849] [INFO] [GoogleSyncService] GoogleSyncService initializing
+[12:49:48.850] [INFO] [DevPilot] Google sync service initialized
+[12:49:48.851] [INFO] [EmailNotificationService] EmailNotificationService initializing
+[12:49:48.856] [INFO] [DevPilot] Email notification service initialized
+[12:49:48.857] [INFO] [UnifiedIssueDetector] Unified issue detector initialized
+[12:49:48.857] [INFO] [UnifiedIssueDetector] Unified issue detector registered
+[12:49:48.857] [INFO] [DevPilot] [DevPilot] Unified issue detector registered
+[12:49:48.858] [INFO] [UnifiedHoverProvider] Unified hover provider registered
+[12:49:48.859] [INFO] [DevPilot] [DevPilot] Unified hover provider registered (consolidates learning, TODO, and diagnostics hover)
+[12:49:48.859] [INFO] [HoverLearning] HTML hover learning provider registered
+[12:49:48.861] [INFO] [HoverLearning] CSS hover learning provider registered
+[12:49:48.862] [INFO] [HoverLearning] JavaScript hover learning provider registered
+[12:49:48.862] [INFO] [HoverLearning] TypeScript hover learning provider registered
+[12:49:48.863] [INFO] [HoverLearning] Python hover learning provider registered
+[12:49:48.864] [INFO] [HoverLearning] C++ hover learning provider registered
+[12:49:48.864] [INFO] [HoverLearning] Java hover learning provider registered
+[12:49:48.865] [INFO] [HoverLearning] Go hover learning provider registered
+[12:49:48.865] [INFO] [HoverLearning] Rust hover learning provider registered
+[12:49:48.866] [INFO] [HoverLearning] C# hover learning provider registered
+[12:49:48.866] [INFO] [DevPilot] [DevPilot] Learning hover providers registered for 10 languages (100+ beginner keywords)
+[12:49:48.867] [INFO] [IssueCodeLensProvider] Issue CodeLens provider registered for all languages
+[12:49:48.868] [INFO] [DevPilot] [DevPilot] Issue CodeLens provider registered
+[12:49:48.868] [INFO] [InlineRefactoringEngine] Inline refactoring suggestions registered
+[12:49:48.868] [INFO] [DevPilot] [DevPilot] Inline refactoring suggestions registered
+[12:49:48.869] [INFO] [DiagnosticSeverityEnforcer] Diagnostic severity enforcer registered
+[12:49:48.869] [INFO] [DevPilot] [DevPilot] Diagnostic severity enforcer registered
+[12:49:48.873] [INFO] [DevPilot] [DevPilot] Staged change analyzer initialized
+[12:49:48.876] [INFO] [GoogleSyncService] GoogleSyncService initialized | {"lastSyncTime":0}
+[12:49:59.511] [INFO] [DevPilot] Inline completion provider registered
+[12:49:59.512] [INFO] [DevAIChatbot] [DevPilot] Global DevAI chatbot instance set
+[12:49:59.512] [INFO] [DevPilot] [DevPilot] DevAI Chatbot initialized
+[12:49:59.513] [INFO] [DevPilot] Commit generator registered
+[12:49:59.514] [ERROR] [TranslateCodeCommand] Failed to register translate code command | {"error":"Error: command 'devpilot.translateCode' already exists"}
+[12:49:59.514] [WARN] [DevPilot] [DevPilot] Failed to register translate code command | {"error":"Error: command 'devpilot.translateCode' already exists"}
+[12:49:59.520] [INFO] [RefactoringCodeAction] Refactoring code action provider registered successfully
+[12:49:59.520] [INFO] [DevPilot] Refactoring code action provider registered
+[12:49:59.523] [INFO] [ChatSidebar] Chat sidebar registered
+[12:49:59.523] [INFO] [DevPilot] Chat sidebar registered
+[12:49:59.524] [INFO] [LearningPanel] Learning panel registered
+[12:49:59.524] [INFO] [DevPilot] Learning panel registered
+[12:49:59.525] [INFO] [CommitMessagePanel] Commit message panel registered
+[12:49:59.525] [INFO] [DevPilot] Commit message panel registered
+[12:49:59.528] [INFO] [DevPilot] Phase 3 commands registered
+[12:49:59.529] [INFO] [WelcomeSidebar] Welcome sidebar registered
+[12:49:59.529] [INFO] [DevPilot] Welcome sidebar registered
+[12:49:59.529] [INFO] [AuthPanelProvider] Auth panel provider registered
+[12:49:59.530] [INFO] [DevPilot] Auth panel registered
+[12:49:59.530] [INFO] [InlineSuggestions] Inline suggestions provider registered
+[12:49:59.530] [INFO] [DevPilot] Inline suggestions provider registered
+[12:49:59.531] [DEBUG] [TODOWorkflowManager] [TODO] Streak tracking initialized
+[12:49:59.534] [INFO] [DevPilot] Dashboard panel registered
+[12:49:59.536] [INFO] [DevPilot] Editor decorations registered
+[12:49:59.540] [INFO] [DevPilot] CodeLens providers registered
+[12:49:59.540] [INFO] [DevPilot] [DevPilot] Suggest fix command registered
+[12:49:59.541] [ERROR] [StatePersistence] Failed to persist state for key: devpilot.suggestionFilter | {"error":{}}
+[12:49:59.541] [INFO] [DevPilot] Suggestion filter registered
+[12:49:59.542] [WARN] [DevPilot] Failed to register achievement system | {"error":"TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'Timeout'\n    |     property '_idlePrev' -> object with constructor 'TimersList'\n    --- property '_idleNext' closes the circle"}
+[12:49:59.543] [INFO] [UserSyncService] Starting user sync service
+[12:49:59.544] [DEBUG] [UserSyncService] Cannot sync: user not authenticated
+[12:49:59.544] [INFO] [DevPilot] User sync service started
+[12:49:59.544] [INFO] [DevPilot] Document change listener registered for learning progress tracking
+[12:49:59.544] [WARN] [DevPilot] Failed to register learning resource tracker | {"error":"TypeError: Cannot assign to read only property 'openExternal' of object '#<Object>'"}
+[12:49:59.545] [DEBUG] [DevPilot] Command registered: devpilot.removeUnusedVariable
+[12:49:59.546] [DEBUG] [DevPilot] Command registered: devpilot.addTypeAnnotation
+[12:49:59.546] [DEBUG] [DevPilot] Command registered: devpilot.fixTypeMismatch
+[12:49:59.546] [DEBUG] [DevPilot] Command registered: devpilot.addAwait
+[12:49:59.546] [DEBUG] [DevPilot] Command registered: devpilot.addOptionalChaining
+[12:49:59.547] [ERROR] [DevPilot] Failed to register command: devpilot.analyzeStagedChanges | {"error":"Error: command 'devpilot.analyzeStagedChanges' already exists"}
+[12:49:59.547] [DEBUG] [DevPilot] Command registered: devpilot.showTodos
+[12:49:59.547] [DEBUG] [DevPilot] Command registered: devpilot.markTodoDone
+[12:49:59.547] [DEBUG] [DevPilot] Command registered: devpilot.increaseTodoPriority
+[12:49:59.548] [DEBUG] [DevPilot] Command registered: devpilot.decreaseTodoPriority
+[12:49:59.548] [DEBUG] [DevPilot] Command registered: devpilot.deleteTodo
+[12:49:59.549] [DEBUG] [DevPilot] Command registered: devpilot.refreshDiagnostics
+[12:49:59.550] [DEBUG] [DevPilot] Command registered: devpilot.markIssueResolved
+[12:49:59.550] [DEBUG] [DevPilot] Command registered: devpilot.editIssue
+[12:49:59.551] [DEBUG] [DevPilot] Command registered: devpilot.deleteIssue
+[12:49:59.551] [ERROR] [DevPilot] Failed to register command: devpilot.increaseTodoPriority | {"error":"Error: command 'devpilot.increaseTodoPriority' already exists"}
+[12:49:59.551] [ERROR] [DevPilot] Failed to register command: devpilot.decreaseTodoPriority | {"error":"Error: command 'devpilot.decreaseTodoPriority' already exists"}
+[12:49:59.552] [DEBUG] [DevPilot] Command registered: devpilot.focusIssue
+[12:49:59.553] [DEBUG] [DevPilot] Command registered: devpilot.showIssuesSummary
+[12:49:59.554] [DEBUG] [DevPilot] Command registered: devpilot.trackLearningActivity
+[12:49:59.554] [DEBUG] [DevPilot] Command registered: devpilot.internal.enableAchievements
+[12:49:59.555] [DEBUG] [DevPilot] Command registered: devpilot.internal.disableAchievements
+[12:49:59.555] [DEBUG] [DevPilot] Command registered: devpilot.internal.enableStreaks
+[12:49:59.555] [DEBUG] [DevPilot] Command registered: devpilot.internal.disableStreaks
+[12:49:59.556] [DEBUG] [DevPilot] Command registered: devpilot.syncToGoogle
+[12:49:59.557] [DEBUG] [DevPilot] Command registered: devpilot.viewNotificationLogs
+[12:49:59.557] [DEBUG] [DevPilot] Command registered: devpilot.testNotification
+[12:49:59.558] [DEBUG] [DevPilot] Command registered: devpilot.trackCompilationSpeed
+[12:49:59.558] [DEBUG] [DevPilot] Command registered: devpilot.startTutorial
+[12:49:59.559] [INFO] [DevPilot] Status bar item created
+[12:49:59.560] [INFO] [DevPilot] DevPilot activation complete
+[12:49:59.608] [DEBUG] [DashboardPanel] [DASHBOARD] View resolved and HTML set
+[12:49:59.608] [DEBUG] [DashboardPanel] [DASHBOARD] Auth state subscription configured
+[12:49:59.609] [DEBUG] [DashboardPanel] [DASHBOARD] Real-time state broadcast subscription enabled
+[12:49:59.609] [DEBUG] [DashboardPanel] [DASHBOARD] Active editor change listener enabled
+[12:49:59.609] [DEBUG] [DashboardPanel] [DASHBOARD] Document open listener enabled for TODO tracking
+[12:49:59.609] [DEBUG] [DashboardPanel] [DASHBOARD] Initial dashboard update
+[12:49:59.609] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:49:59.610] [INFO] [DashboardPanel] [DASHBOARD] Showing tutorial on first launch
+[12:49:59.615] [INFO] [LearningPanel] Learning panel resolved
+[12:49:59.618] [DEBUG] [DashboardPanel] [DASHBOARD] Triggering initial dashboard update after view resolve
+[12:49:59.618] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:49:59.645] [INFO] [WelcomeSidebar] Welcome sidebar view resolved
+[12:49:59.679] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:49:59.680] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:49:59.681] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:49:59.686] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:49:59.690] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:49:59.691] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:49:59.750] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:49:59.750] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:49:59.751] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:49:59.751] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:49:59.752] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:49:59.752] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:00.361] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] Webview signaled ready
+[12:50:00.363] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] checkGitHubAuth called: isAuthenticated=false
+[12:50:00.364] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] globalState auth: | {"isAuthenticated":false,"hasSomething":true}
+[12:50:00.366] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] Sending unauthenticated state to webview
+[12:50:00.368] [WARN] [CommitMessagePanel] Unknown message type | {}
+[12:50:00.418] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"ready","keys":["command","data"]}
+[12:50:00.419] [DEBUG] [DashboardPanel] [DASHBOARD] Webview ready signal received, sending initial state after delay
+[12:50:00.488] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"refreshDashboard","keys":["command"]}
+[12:50:00.488] [DEBUG] [DashboardPanel] [DASHBOARD] Refresh dashboard command received
+[12:50:00.489] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:00.490] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:00.491] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:00.491] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:00.492] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:00.492] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:00.493] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:00.521] [DEBUG] [DashboardPanel] [DASHBOARD] Delay complete, now sending initial state
+[12:50:00.521] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:00.523] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:00.523] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:00.523] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:00.525] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:00.526] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:00.527] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:08.531] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"ready","keys":["command","data"]}
+[12:50:08.531] [DEBUG] [DashboardPanel] [DASHBOARD] Webview ready signal received, sending initial state after delay
+[12:50:08.581] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"refreshDashboard","keys":["command"]}
+[12:50:08.582] [DEBUG] [DashboardPanel] [DASHBOARD] Refresh dashboard command received
+[12:50:08.582] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:08.585] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:08.586] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:08.586] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:08.587] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:08.588] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:08.589] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:08.644] [DEBUG] [DashboardPanel] [DASHBOARD] Delay complete, now sending initial state
+[12:50:08.644] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:08.647] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:08.647] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:08.648] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:08.648] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:08.649] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:08.649] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:19.814] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"learning","keys":["command"]}
+[12:50:19.814] [DEBUG] [DashboardPanel] [DASHBOARD] Opening learning panel
+[12:50:19.815] [INFO] [Phase3Commands] Opening learning sidebar
+[12:50:19.816] [DEBUG] [DashboardPanel] [DASHBOARD] Learning panel opened via focus command
+[12:50:29.543] [DEBUG] [DashboardPanel] [DASHBOARD] Fallback refresh (30s interval)
+[12:50:29.544] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:29.547] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:29.547] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:29.547] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:29.549] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:29.550] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:29.552] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:44.468] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"ready","keys":["command","data"]}
+[12:50:44.469] [DEBUG] [DashboardPanel] [DASHBOARD] Webview ready signal received, sending initial state after delay
+[12:50:44.493] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"refreshDashboard","keys":["command"]}
+[12:50:44.493] [DEBUG] [DashboardPanel] [DASHBOARD] Refresh dashboard command received
+[12:50:44.494] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:44.498] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:44.499] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:44.499] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:44.500] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:44.501] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:44.502] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:44.578] [DEBUG] [DashboardPanel] [DASHBOARD] Delay complete, now sending initial state
+[12:50:44.579] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:44.582] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:44.583] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:44.583] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:44.584] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:44.585] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:44.587] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:50:46.811] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"signIn","keys":["command"]}
+[12:50:46.811] [DEBUG] [DashboardPanel] [DASHBOARD] Sign in command triggered
+[12:50:46.812] [INFO] [DevPilot] Command: devpilot.signIn triggered
+[12:50:46.815] [DEBUG] [GoogleAuthCoordinator] No user profile found
+[12:50:46.815] [INFO] [DevPilot] No existing auth detected, showing auth method selection
+[12:50:48.453] [INFO] [DevPilot] Command: devpilot.signInGoogle triggered
+[12:50:48.463] [DEBUG] [GoogleAuthCoordinator] GoogleAuthCoordinator already initialized, returning
+[12:50:48.466] [DEBUG] [GoogleAuthCoordinator] No user profile found
+[12:50:48.467] [ERROR] [GoogleAuthCoordinator] Client secret missing | {"error":"Google OAuth client_secret not configured. Please run 'DevPilot: Configure Google OAuth' first."}
+[12:50:48.468] [ERROR] [GoogleAuthCoordinator] Failed to start OAuth flow | {"error":"Error: Google OAuth client_secret not configured. Please run 'DevPilot: Configure Google OAuth' first."}
+[12:50:48.468] [ERROR] [DevPilot] [SignInGoogle] Google authentication failed | {"error":"Google OAuth client_secret not configured. Please run 'DevPilot: Configure Google OAuth' first."}
+[12:50:51.538] [DEBUG] [DashboardPanel] [DASHBOARD] Message received from webview | {"command":"signIn","keys":["command"]}
+[12:50:51.538] [DEBUG] [DashboardPanel] [DASHBOARD] Sign in command triggered
+[12:50:51.538] [INFO] [DevPilot] Command: devpilot.signIn triggered
+[12:50:51.541] [DEBUG] [GoogleAuthCoordinator] No user profile found
+[12:50:51.541] [INFO] [DevPilot] No existing auth detected, showing auth method selection
+[12:50:53.370] [INFO] [DevPilot] Command: devpilot.signInGitHub triggered
+[12:50:53.381] [DEBUG] [GoogleAuthCoordinator] No user profile found
+[12:50:53.381] [INFO] [GitHubAuthCoordinator] [GitHubAuth] Starting GitHub authentication
+[12:50:59.549] [DEBUG] [DashboardPanel] [DASHBOARD] Fallback refresh (30s interval)
+[12:50:59.550] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:50:59.554] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:50:59.555] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:50:59.556] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:50:59.565] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:50:59.566] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:50:59.569] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:51:29.550] [DEBUG] [DashboardPanel] [DASHBOARD] Fallback refresh (30s interval)
+[12:51:29.551] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:51:29.557] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:51:29.562] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:51:29.564] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:51:29.566] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:51:29.567] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:51:29.573] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:51:59.559] [DEBUG] [DashboardPanel] [DASHBOARD] Fallback refresh (30s interval)
+[12:51:59.559] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:51:59.561] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"anonymous","isAuthenticated":false,"source":"globalState"}
+[12:51:59.561] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:51:59.561] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:51:59.562] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:51:59.563] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":false,"userEmail":"anonymous"}
+[12:51:59.564] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:52:13.038] [INFO] [GitHubAuthCoordinator] [GitHubAuth] GitHub session obtained successfully
+[12:52:13.038] [INFO] [GitHubAuthCoordinator] [GitHubAuth] Fetching user profile
+[12:52:13.738] [INFO] [GitHubAuthCoordinator] [GitHubAuth] User profile fetched successfully
+[12:52:13.738] [INFO] [GitHubAuthCoordinator] [GitHubAuth] User authenticated: | {"login":"hoorxx","email":null,"repos":0,"followers":1}
+[12:52:13.745] [INFO] [DevPilot] GitHub authentication successful | {"login":"hoorxx"}
+[12:52:13.745] [INFO] [GitHubAuthCoordinator] [GitHubAuth] Fetching user repositories
+[12:52:14.379] [INFO] [GitHubAuthCoordinator] [GitHubAuth] Repositories fetched | {"count":0}
+[12:52:14.379] [INFO] [GitHubAuthCoordinator] [GitHubAuth] User stats compiled | {"totalRepos":0,"totalFollowers":1,"totalFollowing":1,"mostRecentRepo":null,"language":"Unknown"}
+[12:52:14.381] [DEBUG] [StateService] State updated | {"changed":["auth"]}
+[12:52:14.381] [DEBUG] [StateService] Auth state changed | {"wasAuthenticated":false,"isAuthenticated":true}
+[12:52:14.382] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.383] [DEBUG] [DashboardPanel] [DASHBOARD] Auth state changed, IMMEDIATELY updating dashboard
+[12:52:14.384] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:52:14.385] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.385] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.387] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] checkGitHubAuth called: isAuthenticated=true
+[12:52:14.387] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] globalState auth: | {"provider":"github","isAuthenticated":true,"hasSomething":true}
+[12:52:14.387] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] Sending GitHub auth state to webview
+[12:52:14.390] [DEBUG] [AuthService] Retrieved user profile from GitHub globalState | {"email":"user@github.com"}
+[12:52:14.390] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"user@github.com","isAuthenticated":true,"source":"AuthService"}
+[12:52:14.391] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:52:14.391] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:52:14.392] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:52:14.392] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":true,"userEmail":"user@github.com","userName":"hoorxx"}
+[12:52:14.393] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:52:14.396] [DEBUG] [DevPilot] [SignInGitHub] IMMEDIATELY updated globalState to prevent race condition | {"email":null}
+[12:52:14.399] [DEBUG] [DevPilot] Global auth state change handler invoked | {"authenticated":true}
+[12:52:14.401] [DEBUG] [StateService] State updated | {"changed":["auth"]}
+[12:52:14.402] [DEBUG] [StateService] Auth state changed | {"wasAuthenticated":true,"isAuthenticated":true}
+[12:52:14.403] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.403] [DEBUG] [DashboardPanel] [DASHBOARD] Auth state changed, IMMEDIATELY updating dashboard
+[12:52:14.403] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:52:14.403] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.404] [DEBUG] [WebviewAuthIntegration] Auth state changed in StateService, notifying webview | {"isAuthenticated":true}
+[12:52:14.404] [INFO] [DevPilot] ✅ Auth state updated in StateService | {"email":"","provider":"github"}
+[12:52:14.405] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] checkGitHubAuth called: isAuthenticated=true
+[12:52:14.405] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] globalState auth: | {"provider":"github","isAuthenticated":true,"hasSomething":true}
+[12:52:14.406] [DEBUG] [CommitMessagePanel] [CommitMessagePanel] Sending GitHub auth state to webview
+[12:52:14.442] [DEBUG] [AuthService] Retrieved user profile from GitHub globalState | {"email":"user@github.com"}
+[12:52:14.442] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"user@github.com","isAuthenticated":true,"source":"AuthService"}
+[12:52:14.443] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:52:14.443] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:52:14.443] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:52:14.445] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":true,"userEmail":"user@github.com","userName":"hoorxx"}
+[12:52:14.445] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:52:14.448] [DEBUG] [StateService] State saved
+[12:52:14.449] [DEBUG] [DevPilot] [AuthStateChanged] GitHub auth already in globalState, skipping overwrite to preserve data
+[12:52:14.450] [DEBUG] [DashboardPanel] [DASHBOARD] Received auth update command
+[12:52:14.450] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:52:14.456] [DEBUG] [AuthService] Retrieved user profile from GitHub globalState | {"email":"user@github.com"}
+[12:52:14.456] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"user@github.com","isAuthenticated":true,"source":"AuthService"}
+[12:52:14.457] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:52:14.458] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:52:14.458] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:52:14.460] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":true,"userEmail":"user@github.com","userName":"hoorxx"}
+[12:52:14.460] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:52:14.462] [DEBUG] [AuthService] No stored token found
+[12:52:14.462] [DEBUG] [AuthService] User authenticated via GitHub (from globalState)
+[12:52:14.466] [DEBUG] [AuthService] Retrieved user profile from GitHub globalState | {"email":"user@github.com"}
+[12:52:14.485] [DEBUG] [AuthStateSync] AuthStateSync: Preserved existing GitHub auth structure
+[12:52:14.486] [DEBUG] [AuthStateSync] Status bar updated: signed in as user@github.com
+[12:52:14.488] [DEBUG] [DevPilot] Achievements feature enabled (auth state: authenticated)
+[12:52:14.490] [DEBUG] [DevPilot] Streaks feature enabled (auth state: authenticated)
+[12:52:14.491] [INFO] [AuthStateSync] Dependent services updated | {"features":{"canAchievements":true,"canStreaks":true,"canMetrics":true,"canEmailNotifications":true,"canBackupSync":true}}
+[12:52:14.492] [INFO] [AuthStateSync] Auth state: AUTHENTICATED | {"email":"user@github.com"}
+[12:52:14.493] [INFO] [AuthStateSync] Auth state synchronized
+[12:52:14.496] [DEBUG] [AuthService] No stored token found
+[12:52:14.496] [DEBUG] [AuthService] User authenticated via GitHub (from globalState)
+[12:52:14.499] [DEBUG] [AuthService] No stored token found
+[12:52:14.503] [ERROR] [GoogleSyncService] Sync failed | {"error":"No auth token available for sync","retryCount":1}
+[12:52:14.504] [INFO] [GoogleSyncService] Scheduling retry | {"delay":1000,"retryCount":1}
+[12:52:15.541] [DEBUG] [AuthService] No stored token found
+[12:52:15.541] [ERROR] [GoogleSyncService] Sync failed | {"error":"No auth token available for sync","retryCount":2}
+[12:52:15.542] [INFO] [GoogleSyncService] Scheduling retry | {"delay":2000,"retryCount":2}
+[12:52:17.569] [DEBUG] [AuthService] No stored token found
+[12:52:17.569] [ERROR] [GoogleSyncService] Sync failed | {"error":"No auth token available for sync","retryCount":3}
+[12:52:17.569] [ERROR] [GoogleSyncService] Sync failed after max retries | {"retryCount":3}
+[12:52:17.570] [WARN] [DevPilot] [SignInGitHub] Failed to trigger post-auth services | {"error":"Error: No auth token available for sync"}
+[12:52:29.571] [DEBUG] [DashboardPanel] [DASHBOARD] Fallback refresh (30s interval)
+[12:52:29.571] [DEBUG] [DashboardPanel] [DASHBOARD] updateDashboard called, fetching state
+[12:52:29.572] [DEBUG] [AuthService] Retrieved user profile from GitHub globalState | {"email":"user@github.com"}
+[12:52:29.573] [DEBUG] [DashboardPanel] [DASHBOARD] Dashboard state for user | {"userEmail":"user@github.com","isAuthenticated":true,"source":"AuthService"}
+[12:52:29.573] [DEBUG] [DashboardPanel] [DASHBOARD] Loaded code-detected TODOs | {"count":0}
+[12:52:29.573] [DEBUG] [DashboardPanel] [DASHBOARD] TODO completion stats | {"completed":0,"total":0,"points":0,"rate":0}
+[12:52:29.574] [DEBUG] [DashboardPanel] [DASHBOARD] User metrics | {"currentStreak":0,"longestStreak":0,"totalPoints":0,"compilationSpeed":0,"learningProgress":0}
+[12:52:29.574] [DEBUG] [DashboardPanel] [DASHBOARD] State fetched, posting message to webview | {"isAuthenticated":true,"userEmail":"user@github.com","userName":"hoorxx"}
+[12:52:29.577] [DEBUG] [DashboardPanel] [DASHBOARD] Message posted to webview successfully
+[12:52:49.762] [INFO] [DevPilot] DevPilot deactivating
+[12:52:49.762] [DEBUG] [AuthProvider] AuthProvider disposed
+[12:52:49.763] [INFO] [GoogleSyncService] Periodic sync stopped
+[12:52:49.767] [INFO] [UserSyncService] User sync service stopped
+[12:52:49.819] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.819] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.820] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.820] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.820] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.820] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.826] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.826] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.826] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.826] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.826] [WARN] [ErrorHandler] [UNKNOWN] Canceled: Canceled | {"type":"unhandledRejection","originalError":"Error: Canceled: Canceled"}
+[12:52:49.833] [ERROR] [StateService] Failed to save state | {"error":"Canceled: Canceled"}
+[12:52:49.833] [ERROR] [Phase3Activation] Failed to save Phase 3 state | {"error":"Canceled: Canceled"}
+[12:52:49.833] [INFO] [DevPilot] Phase 3 state saved

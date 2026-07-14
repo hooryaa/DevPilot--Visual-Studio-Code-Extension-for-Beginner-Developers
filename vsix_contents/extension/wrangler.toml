@@ -1,0 +1,34 @@
+name = "devpilot-auth"
+account_id = "dec9b0fe1dd7f0a744b88548dd8a339e"
+workers_dev = true
+compatibility_date = "2026-02-07"
+
+main = "src/index.ts"
+
+# KV Namespace bindings
+[[kv_namespaces]]
+binding = "OAUTH_STATE"
+id = "b6d667464445431dbf0f4b12b22abd2a"
+preview_id = "379742c9e1bd42f1b55cab27b76be4a9"
+
+[vars]
+REDIRECT_URI = "https://devpilot-auth.devpilotorg.workers.dev/auth/google/callback"
+GOOGLE_CLIENT_ID = "870407549580-3l4dgpkgr9dfkb8nm76c0gubm1vsiae6.apps.googleusercontent.com"
+WORKER_URL = "https://devpilot-auth.devpilotorg.workers.dev"
+VS_CODE_EXTENSION_ID = "devpilot.devpilot"
+
+# Secrets (must be set via: wrangler secret put GOOGLE_CLIENT_SECRET)
+# Get the Client Secret from Google Cloud Console:
+# 1. Go to Google Cloud Console → APIs & Services
+# 2. Find your OAuth 2.0 app credentials
+# 3. Copy the Client Secret value
+# 4. Run: wrangler secret put GOOGLE_CLIENT_SECRET
+# 5. Paste the secret value when prompted
+
+[env.development]
+vars = { WORKER_URL = "http://127.0.0.1:8787" }
+
+[[env.development.kv_namespaces]]
+binding = "OAUTH_STATE"
+id = "b6d667464445431dbf0f4b12b22abd2a"
+preview_id = "379742c9e1bd42f1b55cab27b76be4a9"

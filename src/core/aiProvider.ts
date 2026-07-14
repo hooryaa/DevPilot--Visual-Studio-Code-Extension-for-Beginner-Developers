@@ -6,7 +6,7 @@
  * Enables offline-first with optional AI enhancement
  */
 
-export type AIProviderType = "openai" | "codet5" | "local";
+export type AIProviderType = "openai" | "gemini" | "codet5" | "local";
 
 export interface AICompletionOptions {
   prompt: string;

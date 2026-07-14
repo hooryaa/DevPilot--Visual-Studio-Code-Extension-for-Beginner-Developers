@@ -1,6 +1,6 @@
 # 🚀 DevPilot
 
-### AI‑Powered Development Assistant for Visual Studio Code
+### Offline-first AI developer productivity suite for Visual Studio Code
 
 <p align="center">
   <img src="media/icon.jpg" width="180" alt="DevPilot Logo">
@@ -9,10 +9,12 @@
 <p align="center">
 
 ![Release](https://img.shields.io/github/v/release/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers)
-![VS Code Extension](https://img.shields.io/badge/VS_Code-Extension-blue)
-![Version](https://img.shields.io/badge/version-v0.1.3-success)
+![VS Code](https://img.shields.io/badge/VS_Code-Extension-blue)
+![Version](https://img.shields.io/badge/version-v1.0.0-success)
 ![Status](https://img.shields.io/badge/status-active-success)
-![Stars](https://img.shields.io/github/stars/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers?style=social)
+![Stars](https://img.shields.io/github/stars/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers)
+![License](https://img.shields.io/badge/license-MIT-green)
+DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers?style=social)
 ![Forks](https://img.shields.io/github/forks/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers?style=social)
 
 </p>
@@ -62,20 +64,29 @@ Watch DevPilot in action: [Project Demo (YouTube)](https://youtu.be/ocs4PCVTKS0)
 
 ## 📦 Latest Release
 
-Version: **v0.1.3**
+Version: **v1.0.0**
 
-Released: June 2026
+Released: July 2026
 
 Includes:
-- DevAI Assistant
-- FreeGPT Integration
-- Authentication System
-- Translation Engine
-- Learning Platform
-- Dashboard Improvements
-- Performance Optimizations
+- AI chat, code explanations, and refactoring suggestions
+- Offline AST-based analysis and hover insights
+- Git commit generation and review support
+- Learning resources, TODO tracking, and developer workflow tools
+- Optional OpenAI, Gemini, or local FreeGPT support
 
 ---
+
+## AI Providers
+
+DevPilot works with multiple AI backends. You can choose the provider that matches your privacy and workflow needs:
+
+- **OpenAI** — cloud-based completions and chat.
+- **Gemini** — Google-backed alternative for completions and chat.
+- **Local (FreeGPT)** — self-hosted FreeGPT-compatible endpoints for offline-first usage.
+
+If you prefer not to use any cloud AI provider, DevPilot's offline analysis, AST inspection, TODO management, learning resources, and many productivity features continue to work without an API key.
+
 
 ## 📥 Installation
 
@@ -94,7 +105,7 @@ Install the latest VSIX via `Extensions: Install from VSIX...` in Visual Studio 
 
 ### AI Features
 - DevAI assistant (context-aware help)
-- Optional OpenAI integration
+- Optional OpenAI and Gemini integration
 - Optional FreeGPT-compatible endpoints
 
 ### Productivity
@@ -191,7 +202,7 @@ flowchart TD
 
 ## 🚦 Project Status
 
-Version: **v0.1.3**
+Version: **v1.0.0**
 
 Development: Active
 
@@ -205,6 +216,8 @@ Create issues and discussions on GitHub:
 - [Discussions](https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers/discussions)
 
 When filing an issue, include: description, steps to reproduce, expected vs actual behavior, and DevPilot version.
+
+For privacy and data handling details, see [docs/PRIVACY_POLICY.md](docs/PRIVACY_POLICY.md).
 
 ---
 

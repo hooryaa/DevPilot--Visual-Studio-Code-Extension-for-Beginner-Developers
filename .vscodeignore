@@ -1,4 +1,50 @@
+.github/**
+.git/**
+.gitignore
+
 .vscode/**
+.vscode-test/**
+
+node_modules/**
+
+src/**
+test/**
+tests/**
+coverage/**
+
+Free-GPT4-WEB-API/**
+
+.wrangler/**
+functions/**
+
+compile_output.txt
+compile_final.txt
+test_output.txt
+out.txt
+
+depcruise.json
+depcruise_report.json
+
+*.log
+*.tsbuildinfo
+
+jest.config.js
+
+README-assets/**
+
+# Exclude temporary install folders created during local verification
+tmp-extensions/**
+tmp-profile/**
+
+# Exclude large non-runtime media and docs
+media/DevPilot.mp4
+media/DevPilot.gif
+media/screenshots/**
+media/screenshot-raw/**
+media/favicon.png
+media/icon.jpg
+
+docs/archive/**.vscode/**
 .vscode-test/**
 node_modules/**
 src/**
@@ -16,3 +62,11 @@ vsc-extension-quickstart.md
 **/*.test.ts
 tools/
 CHANGELOG.md
+
+# Exclude packaged VSIX files created during packaging
+devpilot-*.vsix
+
+# Exclude large media used only for README or demos
+media/*.mp4
+media/*.gif
+media/screen-recordings/**

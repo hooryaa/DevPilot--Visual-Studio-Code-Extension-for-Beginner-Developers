@@ -83,8 +83,9 @@ export async function getAIResponse(
   // Note: DevAIChatbotService should be used in extension context (dashboardPanel, etc)
   // Not here since aiAPI is used in webview contexts where vscode module is unavailable
   return "🤖 DevAI is working offline. To enable AI features:\n\n" +
-    "1. Set your OpenAI API key via: DevPilot: Set OpenAI API Key\n" +
-    "2. Or run the FreeGPT4 backend\n\n" +
+    "1. Run: DevPilot: Configure AI Provider\n" +
+    "2. Choose OpenAI, Gemini, or Local (FreeGPT)\n" +
+    "3. Or run a FreeGPT-compatible backend if you prefer local mode\n\n" +
     "In the meantime, feel free to ask coding questions!";
 }
 

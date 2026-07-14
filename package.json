@@ -1,13 +1,17 @@
 {
   "author": "Hooria Amir",
-  "name": "devpilot",
-  "displayName": "DevPilot",
-  "description": "AI‑Powered Development Assistant for Visual Studio Code — offline-first, AST-powered analysis, learning tools, and optional AI integrations.",
-  "version": "0.1.3",
+  "name": "devpilot-ai-assistant-hooria",
+  "displayName": "DevPilot AI",
+  "description": "AI-powered developer productivity suite for Visual Studio Code with AST analysis, learning tools, Git assistance, and optional OpenAI or Gemini integrations.",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "./out/extension.js",
   "publisher": "devpilotorg",
-  "icon": "media/icon.jpg",
+  "homepage": "https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers",
+  "bugs": {
+    "url": "https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers/issues"
+  },
+  "icon": "media/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers.git"
@@ -16,15 +20,30 @@
     "vscode": "^1.116.0"
   },
   "keywords": [
-    "code-analysis",
-    "refactoring",
-    "diagnostics",
+    "ai",
+    "assistant",
+    "developer",
+    "vscode",
+    "extension",
+    "typescript",
+    "javascript",
+    "python",
+    "chatgpt",
+    "gemini",
+    "openai",
+    "ast",
+    "analysis",
     "learning",
-    "productivity"
+    "refactoring",
+    "git",
+    "commit",
+    "code",
+    "productivity",
+    "education"
   ],
   "categories": [
-    "Linters",
-    "Other"
+    "Programming Languages",
+    "Linters"
   ],
   "galleryBanner": {
     "color": "#1e1e1e",
@@ -50,6 +69,8 @@
     "onCommand:devpilot.checkAuthStatus",
     "onCommand:devpilot.showWelcome",
     "onCommand:devpilot.configureGoogleOAuth",
+    "onCommand:devpilot.configureAIProvider",
+    "onCommand:devpilot.setGeminiKey",
     "onCommand:devpilot.suggestFix",
     "onCommand:devpilot.translateCode",
     "onCommand:devpilot.showTodos",
@@ -61,17 +82,12 @@
         {
           "id": "devpilot",
           "title": "DevPilot",
-          "icon": "media/icon.svg"
+          "icon": "media/icon-activity.svg"
         }
       ]
     },
     "views": {
       "devpilot": [
-        {
-          "id": "devpilot.welcomeSidebar",
-          "name": "Welcome",
-          "type": "webview"
-        },
         {
           "id": "devpilot.dashboard",
           "name": "Dashboard",
@@ -98,19 +114,31 @@
       {
         "id": "getting-started",
         "title": "DevPilot — Getting Started",
-        "description": "A short introduction to DevPilot features and where to begin.",
+        "description": "Set up your AI provider, open the dashboard, and try your first workflow.",
         "steps": [
           {
-            "title": "Welcome to DevPilot",
-            "markdown": "README.md"
+            "title": "Welcome",
+            "markdown": "docs/walkthrough/welcome.md"
           },
           {
-            "title": "Quick Start",
-            "markdown": "QUICK_START.md"
+            "title": "Choose AI Provider",
+            "markdown": "docs/walkthrough/provider.md"
           },
           {
-            "title": "Using the Dashboard and Chat",
-            "markdown": "docs/DEVPILOT_HELP.md"
+            "title": "Configure API Key",
+            "markdown": "docs/walkthrough/api-key.md"
+          },
+          {
+            "title": "Open Dashboard",
+            "markdown": "docs/walkthrough/dashboard.md"
+          },
+          {
+            "title": "Try Hover Analysis",
+            "markdown": "docs/walkthrough/hover-analysis.md"
+          },
+          {
+            "title": "Generate Commit Message",
+            "markdown": "docs/walkthrough/commit-message.md"
           }
         ]
       }
@@ -118,185 +146,235 @@
     "commands": [
       {
         "command": "devpilot.suggestFix",
-        "title": "DevPilot: Suggest Fix",
+        "title": "Suggest Fix",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.generateCommitMessage",
-        "title": "DevPilot: Generate Commit Message",
+        "title": "Generate Commit Message",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.showCommitSuggestions",
-        "title": "DevPilot: Show Commit Suggestions",
-        "category": "DevPilot"
+        "title": "Show Commit Suggestions",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.analyzeStagedChanges",
-        "title": "DevPilot: Analyze Staged Changes",
-        "category": "DevPilot"
+        "title": "Analyze Staged Changes",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.showTodos",
-        "title": "DevPilot: Show All TODOs",
-        "category": "DevPilot"
+        "title": "Show All TODOs",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.markTodoDone",
-        "title": "DevPilot: Mark TODO Done",
-        "category": "DevPilot"
+        "title": "Mark TODO Done",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.increaseTodoPriority",
-        "title": "DevPilot: Increase TODO Priority",
-        "category": "DevPilot"
+        "title": "Increase TODO Priority",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.decreaseTodoPriority",
-        "title": "DevPilot: Decrease TODO Priority",
-        "category": "DevPilot"
+        "title": "Decrease TODO Priority",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.deleteTodo",
-        "title": "DevPilot: Delete TODO",
-        "category": "DevPilot"
+        "title": "Delete TODO",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.showAchievements",
-        "title": "DevPilot: Show Achievements",
-        "category": "DevPilot"
+        "title": "Show Achievements",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.signIn",
-        "title": "DevPilot: Sign In",
+        "title": "Sign In",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.signInGitHub",
-        "title": "DevPilot: Sign In with GitHub (Recommended)",
-        "category": "DevPilot"
+        "title": "Sign In with GitHub (Recommended)",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.signInGoogle",
-        "title": "DevPilot: Sign In with Google",
-        "category": "DevPilot"
+        "title": "Sign In with Google",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.signOut",
-        "title": "DevPilot: Sign Out",
+        "title": "Sign Out",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.showGettingStarted",
-        "title": "DevPilot: Show Getting Started",
+        "title": "Show Getting Started",
+        "category": "DevPilot"
+      },
+      {
+        "command": "devpilot.configureAIProvider",
+        "title": "Configure AI Provider",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.setOpenAIKey",
-        "title": "DevPilot: Set OpenAI API Key",
+        "title": "Set OpenAI API Key",
         "category": "DevPilot"
+      },
+      {
+        "command": "devpilot.setGeminiKey",
+        "title": "Set Gemini API Key",
+        "category": "DevPilot",
+        "commandPalette": false
+      },
+      {
+        "command": "devpilot.removeGeminiKey",
+        "title": "Remove Gemini API Key",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.removeOpenAIKey",
-        "title": "DevPilot: Remove OpenAI API Key",
-        "category": "DevPilot"
+        "title": "Remove OpenAI API Key",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.chatWithDevAI",
-        "title": "DevPilot: Chat with DevAI",
+        "title": "Chat with DevAI",
         "category": "DevPilot"
       },
       {
         "command": "devpilot.clearChatHistory",
-        "title": "DevPilot: Clear Chat History",
-        "category": "DevPilot"
+        "title": "Clear Chat History",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.exportChat",
-        "title": "DevPilot: Export Chat as Markdown",
-        "category": "DevPilot"
+        "title": "Export Chat as Markdown",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.openChatbot",
-        "title": "DevPilot: Open AI Chatbot",
-        "category": "DevPilot"
+        "title": "Open AI Chatbot",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.chatSidebar.focus",
-        "title": "DevPilot: Focus Chat Sidebar",
-        "category": "DevPilot"
+        "title": "Focus Chat Sidebar",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.learning.focus",
-        "title": "DevPilot: Focus Learning Resources",
-        "category": "DevPilot"
+        "title": "Focus Learning Resources",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.commitMessage.focus",
-        "title": "DevPilot: Focus Commit Message Generator",
-        "category": "DevPilot"
+        "title": "Focus Commit Message Generator",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.openQuiz",
-        "title": "DevPilot: Take a Quiz",
-        "category": "DevPilot"
+        "title": "Take a Quiz",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.translateCode",
-        "title": "DevPilot: Translate Code",
+        "title": "Translate Code",
         "category": "DevPilot",
         "description": "Translate selected code between programming languages with auth enforcement"
       },
       {
         "command": "devpilot.openHelp",
-        "title": "DevPilot: Show Help",
-        "category": "DevPilot"
+        "title": "Show Help",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.checkLearningStreak",
-        "title": "DevPilot: Check Learning Streak",
-        "category": "DevPilot"
+        "title": "Check Learning Streak",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.markTodoComplete",
-        "title": "DevPilot: Mark TODO Complete",
-        "category": "DevPilot"
+        "title": "Mark TODO Complete",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.showFileTodoStats",
-        "title": "DevPilot: Show File TODO Stats",
-        "category": "DevPilot"
+        "title": "Show File TODO Stats",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.showTodoAction",
-        "title": "DevPilot: Show TODO Action Menu",
-        "category": "DevPilot"
+        "title": "Show TODO Action Menu",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.configureSuggestions",
-        "title": "DevPilot: Configure Suggestions",
-        "category": "DevPilot"
+        "title": "Configure Suggestions",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.checkAuthStatus",
-        "title": "DevPilot: Check Authentication Status",
-        "category": "DevPilot"
+        "title": "Check Authentication Status",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.configureGoogleOAuth",
-        "title": "DevPilot: Configure Google OAuth",
-        "category": "DevPilot"
+        "title": "Configure Google OAuth",
+        "category": "DevPilot",
+        "commandPalette": false
       },
       {
         "command": "devpilot.trackLearningActivity",
-        "title": "DevPilot: Track Learning Activity",
-        "category": "DevPilot"
-      }
-      ,
+        "title": "Track Learning Activity",
+        "category": "DevPilot",
+        "commandPalette": false
+      },
       {
         "command": "devpilot.showWelcome",
-        "title": "DevPilot: Show Welcome",
-        "category": "DevPilot"
+        "title": "Show Welcome",
+        "category": "DevPilot",
+        "commandPalette": false
+      },
+      {
+        "command": "devpilot.showGettingStarted",
+        "title": "Show Getting Started",
+        "category": "DevPilot",
+        "commandPalette": true
       }
     ],
     "languages": [
@@ -322,28 +400,28 @@
     "menus": {
       "commandPalette": [
         {
+          "command": "devpilot.chatWithDevAI"
+        },
+        {
           "command": "devpilot.suggestFix"
         },
         {
           "command": "devpilot.generateCommitMessage"
         },
         {
-          "command": "devpilot.showTodos"
+          "command": "devpilot.translateCode"
         },
         {
-          "command": "devpilot.showAchievements"
+          "command": "devpilot.configureAIProvider"
         },
         {
-          "command": "devpilot.signInGoogle"
+          "command": "devpilot.setOpenAIKey"
         },
         {
-          "command": "devpilot.signOut"
+          "command": "devpilot.showGettingStarted"
         },
         {
-          "command": "devpilot.checkAuthStatus"
-        },
-        {
-          "command": "devpilot.chatWithDevAI"
+          "command": "devpilot.signIn"
         }
       ]
     },
@@ -452,6 +530,16 @@
           "type": "string",
           "default": "",
           "description": "Optional: URL of a self-hosted Free-GPT4 web API (e.g. http://127.0.0.1:5500). If set and reachable, DevPilot will use it as a local AI provider."
+        },
+        "devpilot.aiProvider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "gemini",
+            "local"
+          ],
+          "default": "local",
+          "description": "Choose the default AI provider for chat, explanations, refactoring suggestions, and commit generation."
         }
       }
     }

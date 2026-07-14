@@ -57,7 +57,9 @@ export class FreeGPTProvider implements IAIProvider {
   }
 
   async getCompletion(options: AICompletionOptions): Promise<AIResult | null> {
-    if (!this.isReady()) return null;
+    if (!this.isReady()) {
+      return null;
+    }
 
     const prompt = `You are a helpful coding assistant for ${options.language}.\n\n${options.prompt}`;
     try {
@@ -74,7 +76,9 @@ export class FreeGPTProvider implements IAIProvider {
   }
 
   async getExplanation(options: AIExplanationOptions): Promise<string | null> {
-    if (!this.isReady()) return null;
+    if (!this.isReady()) {
+      return null;
+    }
 
     const typePrompt = {
       why: "Explain WHY this code pattern is used (its purpose and benefits)",
@@ -94,7 +98,9 @@ export class FreeGPTProvider implements IAIProvider {
   }
 
   async getRefactoringSuggestions(options: AIRefactoringOptions): Promise<AIResult | null> {
-    if (!this.isReady()) return null;
+    if (!this.isReady()) {
+      return null;
+    }
 
     const categoryDesc = {
       readability: "improve readability and clarity",
@@ -119,7 +125,9 @@ export class FreeGPTProvider implements IAIProvider {
   }
 
   async generateCommitMessage(options: AICommitOptions): Promise<string | null> {
-    if (!this.isReady()) return null;
+    if (!this.isReady()) {
+      return null;
+    }
 
     const prompt = `Generate a conventional commit message for these changes. Files: ${options.files?.join(", ") || "various"}\n\nDiff:\n${options.diff}`;
     try {
@@ -132,7 +140,9 @@ export class FreeGPTProvider implements IAIProvider {
   }
 
   async generateQuickCommit(options: AICommitOptions): Promise<string | null> {
-    if (!this.isReady()) return null;
+    if (!this.isReady()) {
+      return null;
+    }
     const prompt = `Generate a SHORT commit subject (<50 chars) for these changes:\n${options.diff.slice(0, 500)}`;
     try {
       const text = await this.callAPI(prompt, 40);

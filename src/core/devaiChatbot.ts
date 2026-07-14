@@ -11,6 +11,7 @@ import * as vscode from "vscode";
 import { getLogger } from "./logger";
 import { getAIProvider } from "./aiProvider";
 import { getStateManager } from "./stateManager";
+import { buildMissingApiKeyMessage, getProviderDisplayName, normalizeAIProvider } from "./providerConfig";
 
 const logger = getLogger("DevAIChatbot");
 
@@ -104,15 +105,23 @@ export class DevAIChatbotService {
       const aiProvider = getAIProvider();
 
       if (!aiProvider.isAvailable) {
-        const fallbackMessage = "🤖 DevAI is working offline. To enable AI features, please set your OpenAI API key:\n\n" +
-          "1. Run the command: 'DevPilot: Set OpenAI API Key'\n" +
-          "2. Get your key from: https://platform.openai.com/api-keys\n" +
-          "3. Paste your API key when prompted\n\n" +
-          "In the meantime, I can help with:\n" +
-          "• Explaining code syntax\n" +
-          "• Showing code patterns\n" +
-          "• Answering learning questions\n\n" +
-          "Feel free to ask me anything about coding!";
+        const selectedProvider = normalizeAIProvider(this.context.globalState.get<string>("devpilot.aiProvider") || "local");
+        const providerLabel = getProviderDisplayName(selectedProvider);
+        const fallbackMessage = [
+          "🤖 DevAI is working offline.",
+          buildMissingApiKeyMessage(selectedProvider),
+          "",
+          `Preferred provider: ${providerLabel}`,
+          "",
+          "You can also use a local FreeGPT-compatible server by setting devpilot.freegptUrl.",
+          "",
+          "In the meantime, I can help with:",
+          "• Explaining code syntax",
+          "• Showing code patterns",
+          "• Answering learning questions",
+          "",
+          "Feel free to ask me anything about coding!",
+        ].join("\n");
         logger.debug("[DevPilot] AI not available, returning offline response");
         
         // Add user message to history

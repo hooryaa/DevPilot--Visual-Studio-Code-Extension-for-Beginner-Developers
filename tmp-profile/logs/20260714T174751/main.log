@@ -1,0 +1,47 @@
+2026-07-14 17:47:52.336 [info] StorageMainService: creating application shared storage
+2026-07-14 17:47:52.339 [info] StorageMainService: creating application shared storage with local application storage fallback
+2026-07-14 17:47:52.347 [info] CrossAppIPCService: connecting to peer
+2026-07-14 17:47:52.478 [info] CrossAppIPCService: disconnected (instance-already-active)
+2026-07-14 17:47:52.516 [info] [shared storage] Creating shared storage database at 'c:\Users\user\.vscode-shared\sharedStorage\state.vscdb' (wasCreated: false)
+2026-07-14 17:47:52.527 [info] [shared storage] Initializing fallback application storage (type: local, path: c:\Users\user\DevPilot-Final-version\tmp-profile\User\globalStorage\state.vscdb)
+2026-07-14 17:47:52.542 [error] Error: Error mutex already exists
+    at bs.installMutex (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:516:26153)
+2026-07-14 17:47:52.641 [info] [shared storage] Fallback application storage initialized with 3 items
+2026-07-14 17:47:52.662 [info] update#setState idle
+2026-07-14 17:48:00.828 [error] Error: Error while decrypting the ciphertext provided to safeStorage.decryptString.
+    at Al.decrypt (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:422:20093)
+    at Object.call (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:409:5334)
+    at Ld.onPromise (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:14315)
+    at Ld.onRawMessage (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:13738)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:407:13029)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b._deliverQueue (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3333)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3667)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:5954)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3562)
+    at Da.value (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:6152)
+    at b._deliver (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3244)
+    at b.fire (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:406:3562)
+    at ee (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:404:9578)
+    at IpcMainImpl.t (file:///C:/Users/user/AppData/Local/Programs/Microsoft%20VS%20Code/034f571df5/resources/app/out/main.js:412:13212)
+    at IpcMainImpl.emit (node:events:519:28)
+    at Session.<anonymous> (node:electron/js2c/browser_init:2:113651)
+    at Session.emit (node:events:519:28)
+2026-07-14 17:48:22.985 [info] update#setState checking for updates
+2026-07-14 17:48:23.260 [info] update#setState downloading
+2026-07-14 17:48:51.808 [info] update#setState downloading
+2026-07-14 17:48:52.661 [info] update#setState downloading
+2026-07-14 17:48:59.703 [warning] [perf] profiling STARTED 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:49:04.740 [warning] [perf] profiling DONE 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:49:05.648 [warning] [perf] profiling STARTED 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:49:10.789 [warning] [perf] profiling DONE 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:49:11.217 [warning] [perf] profiling STARTED 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:49:16.349 [warning] [perf] profiling DONE 4576de9a-11d3-4230-98e6-c959fff4393b
+2026-07-14 17:50:12.047 [info] update#setState downloading
+2026-07-14 17:50:19.063 [info] update#setState downloading
+2026-07-14 17:50:30.969 [info] update#setState downloading
+2026-07-14 17:50:32.321 [info] update#setState downloading
+2026-07-14 17:50:49.409 [info] update#setState downloading
+2026-07-14 17:51:47.157 [info] update#setState downloaded
+2026-07-14 17:52:49.840 [info] Extension host with pid 3820 exited with code: 0, signal: unknown.

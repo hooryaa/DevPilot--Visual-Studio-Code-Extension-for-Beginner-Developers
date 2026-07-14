@@ -1,0 +1,63 @@
+{
+    "telemetry.machineId": "7fb4ce73c2219157deeef941ad38ec6da8079040a94fed2731194c60856c49bb",
+    "telemetry.devDeviceId": "7315da94-c72a-4587-be55-3b6561dd199c",
+    "telemetry.sqmId": "{724D97C7-6018-4AF2-A4F4-63C410B1A6F2}",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [],
+        "emptyWindows": [
+            {
+                "backupFolder": "1784033272920"
+            }
+        ]
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {},
+        "emptyWindows": {
+            "1784033272920": "__default__profile__"
+        }
+    },
+    "theme": "hc-black",
+    "themeBackground": "#000000",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "hc-black",
+        "colorInfo": {
+            "foreground": "#ffffff",
+            "background": "#000000",
+            "editorBackground": "#000000",
+            "titleBarBackground": "#000000",
+            "titleBarBorder": "#6fc3df",
+            "activityBarBackground": "#000000",
+            "activityBarBorder": "#6fc3df",
+            "sideBarBackground": "#000000",
+            "sideBarBorder": "#6fc3df",
+            "statusBarBorder": "#6fc3df",
+            "windowBorder": "#6fc3df"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 356,
+            "auxiliaryBarWidth": 300,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "backupPath": "C:\\Users\\user\\DevPilot-Final-version\\tmp-profile\\Backups\\1784033272920",
+            "uiState": {
+                "mode": 0,
+                "x": 132,
+                "y": 12,
+                "width": 1203,
+                "height": 803
+            }
+        },
+        "openedWindows": []
+    }
+}

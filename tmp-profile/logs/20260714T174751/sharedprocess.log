@@ -1,0 +1,11 @@
+2026-07-14 17:49:42.813 [info] Installing extension: devpilotorg.devpilot {"installGivenVersion":true,"profileLocation":{"$mid":1,"external":"vscode-userdata:/c%3A/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json","path":"/C:/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":false,"isApplicationScoped":false,"productVersion":{"version":"1.118.1","date":"2026-04-29T17:36:44+03:00"}}
+2026-07-14 17:49:45.482 [info] Extracted extension to file:///c%3A/Users/user/DevPilot-Final-version/tmp-extensions/devpilotorg.devpilot-1.0.0: devpilotorg.devpilot
+2026-07-14 17:49:45.753 [info] Renamed to c:\Users\user\DevPilot-Final-version\tmp-extensions\devpilotorg.devpilot-1.0.0
+2026-07-14 17:49:47.582 [info] Extension installed successfully: devpilotorg.devpilot vscode-userdata:/c%3A/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json
+2026-07-14 17:51:50.510 [info] Getting Manifest... github.copilot-chat
+2026-07-14 17:51:51.598 [info] Installing extension: github.copilot-chat {"productVersion":{"version":"1.127.0","date":"2026-06-30T09:14:00.009Z"},"pinned":false,"operation":3,"isApplicationScoped":true,"profileLocation":{"$mid":1,"external":"vscode-userdata:/c%3A/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json","path":"/C:/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json","scheme":"vscode-userdata"},"isBuiltin":true}
+2026-07-14 17:52:19.626 [info] Extension signature verification result for github.copilot-chat: Success. Internal Code: 0. Executed: true. Duration: 3780ms.
+2026-07-14 17:52:24.602 [info] Extracted extension to file:///c%3A/Users/user/DevPilot-Final-version/tmp-extensions/github.copilot-chat-0.48.1: github.copilot-chat
+2026-07-14 17:52:24.690 [info] Renamed to c:\Users\user\DevPilot-Final-version\tmp-extensions\github.copilot-chat-0.48.1
+2026-07-14 17:52:25.243 [error] [/c:/Users/user/DevPilot-Final-version/tmp-extensions/github.copilot-chat-0.48.1]: Extension is not compatible with Code 1.118.1. Extension requires: ^1.120.0.
+2026-07-14 17:52:25.525 [info] Extension installed successfully: github.copilot-chat vscode-userdata:/c%3A/Users/user/DevPilot-Final-version/tmp-extensions/extensions.json
