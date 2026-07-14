@@ -90,33 +90,30 @@ If you prefer not to use any cloud AI provider, DevPilot's offline analysis, AST
 
 ---
 
-## 📥 Installation
+# 📥 Installation
 
-
-# 🛒 Install from Visual Studio Marketplace
+### 🛒 Install from Visual Studio Marketplace
 
 The easiest way to install DevPilot is directly from the official Visual Studio Marketplace.
 
-👉 **Install DevPilot AI**
+👉 **Install DevPilot AI**  
 https://marketplace.visualstudio.com/items?itemName=devpilotorg.devpilot-ai-assistant-hooria
 
-Or search for **"DevPilot AI"** in the VS Code Extensions Marketplace.
+Or search for **"DevPilot AI"** directly in the VS Code Extensions Marketplace.
 
----
+### 📦 Manual Installation (VSIX)
 
-## 📥 Manual Installation (VSIX)
-
-If you prefer installing manually or want a specific release:
+If you prefer installing manually or want a specific release, download the latest VSIX from GitHub:
 
 👉 https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers/releases/latest
 
-Download the latest `.vsix` and install it using:
+Then install it from within Visual Studio Code:
 
 `Extensions → Install from VSIX...`
 
 ---
 
-# ✨ Features (high level)
+# ✨ Features (High Level)
 
 ### Core Development
 - AST analysis (symbol extraction, complexity, dependency analysis)
