@@ -1011,27 +1011,30 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     });
 
-    // Configure Google OAuth (Store client_secret securely)
+    // Configure Google OAuth (optional; sign-in can proceed without a client secret)
     earlyRegister("devpilot.configureGoogleOAuth", async () => {
       try {
         logger.info("Command: devpilot.configureGoogleOAuth triggered");
 
         const clientSecret = await vscode.window.showInputBox({
-          prompt: "Enter Google OAuth Client Secret",
-          placeHolder: "Your client_secret from Google Cloud Console",
+          prompt: "Enter Google OAuth Client Secret (optional)",
+          placeHolder: "Leave blank to use the public-client OAuth flow without a secret",
           password: true,
           ignoreFocusOut: true,
-          validateInput: (value) => {
-            if (!value || value.trim().length === 0) {
-              return "Client secret cannot be empty";
-            }
-            return undefined;
-          },
         });
 
-        if (!clientSecret) {
+        if (clientSecret === undefined) {
           logger.info("Client secret configuration cancelled by user");
           vscode.window.showInformationMessage("Configuration cancelled.");
+          return;
+        }
+
+        if (!clientSecret.trim()) {
+          await context.secrets.delete("devpilot_google_client_secret");
+          logger.info("No Google OAuth client secret provided; cleared any previous stored value");
+          vscode.window.showInformationMessage(
+            "✅ No client secret stored. DevPilot will use the public-client Google sign-in flow."
+          );
           return;
         }
 

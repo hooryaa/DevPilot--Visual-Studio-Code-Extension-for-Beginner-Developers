@@ -22,7 +22,7 @@ const logger = getLogger("LoopbackOAuthHandler");
 
 export interface LoopbackConfig {
   clientId: string;
-  clientSecret: string;
+  clientSecret?: string;
   scopes?: string[];
   startPort?: number;
 }

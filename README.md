@@ -14,7 +14,8 @@
 ![Status](https://img.shields.io/badge/status-active-success)
 ![Stars](https://img.shields.io/github/stars/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers)
 ![License](https://img.shields.io/badge/license-MIT-green)
-DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers?style=social)
+![Marketplace](https://img.shields.io/badge/Marketplace-DevPilot%20AI-blue?logo=visualstudiocode)
+![GitHub](https://img.shields.io/badge/GitHub-DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers-181717?logo=github&style=social)
 ![Forks](https://img.shields.io/github/forks/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers?style=social)
 
 </p>
@@ -87,12 +88,31 @@ DevPilot works with multiple AI backends. You can choose the provider that match
 
 If you prefer not to use any cloud AI provider, DevPilot's offline analysis, AST inspection, TODO management, learning resources, and many productivity features continue to work without an API key.
 
+---
 
 ## 📥 Installation
 
-👉 [Download Latest Release](https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers/releases/latest)
 
-Install the latest VSIX via `Extensions: Install from VSIX...` in Visual Studio Code.
+# 🛒 Install from Visual Studio Marketplace
+
+The easiest way to install DevPilot is directly from the official Visual Studio Marketplace.
+
+👉 **Install DevPilot AI**
+https://marketplace.visualstudio.com/items?itemName=devpilotorg.devpilot-ai-assistant-hooria
+
+Or search for **"DevPilot AI"** in the VS Code Extensions Marketplace.
+
+---
+
+## 📥 Manual Installation (VSIX)
+
+If you prefer installing manually or want a specific release:
+
+👉 https://github.com/hooryaa/DevPilot--Visual-Studio-Code-Extension-for-Beginner-Developers/releases/latest
+
+Download the latest `.vsix` and install it using:
+
+`Extensions → Install from VSIX...`
 
 ---
 

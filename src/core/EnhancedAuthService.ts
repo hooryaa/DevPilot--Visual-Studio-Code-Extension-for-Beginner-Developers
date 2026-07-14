@@ -84,7 +84,7 @@ export class EnhancedAuthService {
   async signInWithGoogle(
     context: vscode.ExtensionContext,
     clientId: string,
-    clientSecret: string
+    clientSecret?: string
   ): Promise<void> {
     if (this.config.useLoopback) {
       return this.signInWithLoopback(context, clientId, clientSecret);
@@ -99,7 +99,7 @@ export class EnhancedAuthService {
   private async signInWithLoopback(
     context: vscode.ExtensionContext,
     clientId: string,
-    clientSecret: string
+    clientSecret?: string
   ): Promise<void> {
     logger.info("[SignIn - Loopback] Starting Google OAuth sign-in flow");
 

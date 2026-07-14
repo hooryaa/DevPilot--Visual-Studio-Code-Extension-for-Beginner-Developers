@@ -175,20 +175,18 @@ export class GoogleAuthCoordinator {
       // Client ID registered for http://127.0.0.1:8888/callback in Google Cloud Console
       const clientId = "870407549580-blv0bht7ston2q2ksc1380vsd71l71sv.apps.googleusercontent.com";
       
-      // Retrieve client_secret from secure storage
+      // Retrieve client_secret from secure storage when present.
+      // The loopback OAuth flow can also work in public-client mode without a secret.
       const clientSecret = await this.context.secrets.get("devpilot_google_client_secret");
       
       if (!clientSecret) {
-        const errorMsg = "Google OAuth client_secret not configured. Please run 'DevPilot: Configure Google OAuth' first.";
-        logger.error('Client secret missing', { error: errorMsg });
-        vscode.window.showErrorMessage(errorMsg);
-        throw new Error(errorMsg);
+        logger.info('No Google client secret stored; proceeding with public-client OAuth flow');
       }
       
       logger.info('Starting Google OAuth with loopback mechanism (127.0.0.1:8888)');
       
       const authService = getEnhancedAuthService({ useLoopback: true });
-      await authService.signInWithGoogle(this.context, clientId, clientSecret);
+      await authService.signInWithGoogle(this.context, clientId, clientSecret ?? '');
       logger.debug('Loopback OAuth server started on 127.0.0.1:8888, waiting for callback...');
     } catch (error) {
       logger.error('Failed to start OAuth flow', { error: String(error) });
